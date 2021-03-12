@@ -1,0 +1,41 @@
+// Place all the styles related to the users::users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.notice-message {
+	padding: 5px;
+	margin-bottom: 15px;
+	color: green;
+}
+
+.no-gutters {
+	margin: 0;
+	padding: 0;
+}
+
+.no-gutters {
+	.col {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.user {
+	padding-bottom: 20px;
+	background-color: #fff;
+	border-radius: 10px;
+	.user-img {
+		margin-bottom: 15px;
+	}
+	.user-info {
+		margin-bottom: 15px;
+		p {
+			margin: 5px 0;
+			padding: 0 10px;
+		}
+	}
+}
+
+.table-title {
+	margin-top: 20px;
+}

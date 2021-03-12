@@ -10,6 +10,74 @@
   </head>
 
   <body>
+    <div>
+      <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #000033">
+        <a class="navbar-brand" href="/">Suketto</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <%= link_to "Sukettoについて", about_path, class: "nav-link" %>
+            </li>
+            <% if current_user %>
+              <li class="nav-item">
+                <%= link_to "マイページ", users_customer_path(current_user), class: "nav-link" %>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">助っ人依頼</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <%= link_to "依頼一覧", users_requests_path, class: "dropdown-item" %><br>
+                  <%= link_to "依頼投稿", new_users_request_path, class: "dropdown-item" %><br>
+                </div>
+              </li>
+              <li class="nav-item">
+                <%= link_to "チケット", new_users_purchase_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link btn btn-danger" %>
+              </li>
+            <% elsif current_admin %>
+              <li class="nav-item">
+                <%= link_to "ユーザー一覧", admins_customers_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "依頼一覧", admins_requests_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "チケット一覧", admins_tickets_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "通報一覧", admins_reports_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link btn btn-danger" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "ユーザー登録", new_user_registration_path, class: "nav-link btn btn-primary btn-sm" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: "nav-link btn btn-success btn-sm" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "管理者ログイン", new_admin_session_path, class: "nav-link btn btn-secondary btn-sm" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </div>
     <%= yield %>
+    <footer class="footer">
+      <div class="footer-container">
+        <% if current_user %>
+          <p class="text-muted"><%= link_to "Sukettoについて", about_path, class: "footer-link" %> <%= link_to "マイページ", users_customer_path(current_user), class: "footer-link" %> <%= link_to "依頼一覧", users_requests_path, class: "footer-link" %> <%= link_to "依頼投稿", new_users_request_path, class: "footer-link" %> <%= link_to "チケット購入", new_users_purchase_path, class: "footer-link" %></p>
+        <% else %>
+          <p class="text-muted"><%= link_to "Sukettoについて", about_path, class: "footer-link" %> <%= link_to "ログイン", new_user_session_path, class: "footer-link" %> <%= link_to "ユーザー登録", new_user_registration_path, class: "footer-link" %> <%= link_to "管理者ログイン", new_admin_session_path, class: "footer-link" %></p>
+        <% end %>
+      </div>
+    </footer>
   </body>
 </html>
