@@ -1,6 +1,7 @@
 class Request < ApplicationRecord
 
 	belongs_to :user
+	has_many :participants, dependent: :destroy
 
  	validates :datetime, presence: true
   	validates :address, presence: true

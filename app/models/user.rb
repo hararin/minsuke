@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :requests
+  has_many :participants
 
   validates :name, presence: true
   validates :ticket, presence: true

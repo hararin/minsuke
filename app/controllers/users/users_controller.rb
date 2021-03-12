@@ -1,9 +1,11 @@
 class Users::UsersController < ApplicationController
 
 	before_action :authenticate_user!
+	before_action :is_banned, only:[:edit, :update]
 
 	def show
 		@user = User.find(params[:id])
+		@participants = @user.participants.page(params[:page]).per(5)
 		@requests = @user.requests.page(params[:page]).per(5)
 		@requests.each do |request|
 			request.ticket_return(request)
