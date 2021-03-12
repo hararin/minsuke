@@ -1,0 +1,38 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container {
+	padding: 20px;
+}
+
+.home {
+	text-align: left;
+	height: 800px;
+	background-image: url(4481879_m.jpg);
+	background-position: center;
+	background-size: cover;
+	opacity : 1.0;
+	p {
+		font-size: 75px;
+		color: #fff;
+		text-shadow:0 10px 10px black;
+		margin-top: 150px;
+		font-weight: 900;
+	}
+}
+
+.container {
+	h2 {
+	margin-bottom: 40px;
+	font-weight: bold;
+	}
+}
+
+.about {
+	text-align: left;
+}
+
+.about-btn {
+	text-align: center;
+}
