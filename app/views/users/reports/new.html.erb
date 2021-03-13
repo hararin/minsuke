@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="row">
+		<div class="col-6 offset-3">
+			<h1>REPORT</h1>
+		</div>
+	</div>
+	<div class="row">
+	    <div class="col-12 col-md-8 offset-md-2">
+	    	<%= render 'layouts/error_messages', model: @report %>
+	    </div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-8 offset-md-2 report-form">
+			<p>以下のユーザーを通報します。</p>
+			<p><%= @respondent.name %></p>
+			<%= form_with model: @report, local: true, url: users_user_reports_path(@respondent), method: :post do |f| %>
+				<div class="row">
+					<%= f.text_area :content, class: "form-control col-10 offset-1 col-md-8 offset-md-2", :placeholder => "通報理由を入力してください・" %>
+				</div>
+				<div style="margin: 20px;">
+					<%= f.submit "通報する", class: "btn btn-danger" %>
+				</div>
+			<% end %>
+			<p>・通報理由を必ず入力してください。<br>・通報後は取り消すことができません。</p>
+		</div>
+	</div>
+</div>
