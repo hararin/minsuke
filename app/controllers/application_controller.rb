@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
 	def is_banned
 		if current_user.is_banned == true
-			redirect_to users_customer_path(current_user), flash: { error: "このアカウントは停止中のため一部の機能を利用できません。" }
+			redirect_to users_user_path(current_user), flash: { error: "このアカウントは停止中のため一部の機能を利用できません。" }
 		end
 	end
 
