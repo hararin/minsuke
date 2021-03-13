@@ -1,0 +1,88 @@
+<div class="container">
+	<div class="row">
+		<div class="col-6 offset-3">
+			<h1>TICKETS</h1>
+		</div>
+	</div>
+	<% if flash[:error] %>
+		<div class="row">
+			<div class="col-sm-10 offset-sm-1 col-md-6 offset-md-3 error-message">
+				<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
+			</div>
+		</div>
+	<% end %>
+	<%= render 'layouts/error_messages', model: @purchase %>
+	<div class="row">
+		<div class="col-sm-10 offset-sm-1 col-md-6 offset-md-3 purchase-form">
+			<%= form_with model:@purchase, local:true, url: users_purchases_path do |f| %>
+				<p>(1)購入するチケットと購入数を選択してください</p>
+				<div>
+					<%= f.collection_select :ticket_id, @tickets, :id, :name, prompt: "購入するチケット" %> <%= f.select :quantity, [1, 2, 3, 4, 5], prompt: "購入数" %>
+				</div>
+				<p>(2)支払方法を選択してください</p>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<label class="btn btn-outline-info active">
+						<%= f.radio_button :payment_method, "クレジットカード", {checked: true} %>クレジットカード
+					</label>
+					<label class="btn btn-outline-success">
+						<%= f.radio_button :payment_method, "銀行振込", {} %>銀行振込
+					</label>
+				</div>
+				<div>
+					<%= f.submit "購入する", class: "btn btn-outline-danger", style: "margin-top: 10px;", data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に購入しますか？",
+                                cancel: "戻る",
+                                commit: '購入する' } %>
+				</div>
+				<p><%= current_user.name %>さんのチケット保有数: <%= current_user.ticket %>枚</p>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-10 offset-sm-1 col-md-6 offset-md-3">
+			<input class="btn btn-primary" value="購入履歴を表示" type="button" onclick="clickBtn3()"/>
+		</div>
+	</div>
+	<div class="row" id="purchase-table">
+		<div class="col-10 offset-1 col-sm-10 offset-sm-1 col-md-6 offset-md-3">
+			<table class="table table-bordered table-title ">
+				<thead>
+					<tr>
+						<th><%= current_user.name %>さんのチケット購入履歴</th>
+					</tr>
+				</thead>
+			</table>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>購入日</th>
+						<th>チケット名</th>
+						<th>購入数</th>
+						<th>請求額</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @purchases.each do |purchase| %>
+						<tr>
+							<td><%= purchase.created_at.strftime('%Y/%m/%d') %></td>
+							<td><%= purchase.ticket.name %></td>
+							<td><%= purchase.quantity %></td>
+							<td><%= purchase.charge %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<%= paginate @purchases %>
+		</div>
+	</div>
+</div>
+<script>
+document.getElementById("purchase-table").style.display = "none";
+function clickBtn3(){
+	const table3 = document.getElementById("purchase-table");
+	if (table3.style.display == "block"){
+		table3.style.display = "none";
+	} else {
+		table3.style.display = "block";
+	}
+}
+</script>
