@@ -19,7 +19,7 @@ class Users::UsersController < ApplicationController
 	def update
 		@user = current_user
 		if @user.update(user_params)
-			redirect_to users_customer_path(current_user)
+			redirect_to users_user_path(current_user)
 		else
 			render :edit
 		end
@@ -29,10 +29,10 @@ class Users::UsersController < ApplicationController
 		@user = current_user
 		any_requests_or_participants?(@user)
 		if @req_in_progress.blank? == false
-	    	redirect_to users_customer_path(@user), flash: { error: "進行中の依頼があるため退会できません。" }
+	    	redirect_to users_user_path(@user), flash: { error: "進行中の依頼があるため退会できません。" }
 	    	return
 	    elsif @par_in_progress.blank? == false
-	    	redirect_to users_customer_path(@user), flash: { error: "進行中の助っ人があるため退会できません。" }
+	    	redirect_to users_user_path(@user), flash: { error: "進行中の助っ人があるため退会できません。" }
 	    	return
 	    else
 		    @user.discard

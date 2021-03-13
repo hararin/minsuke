@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   }
 
   namespace :admins do
-    resources :customers, only:[:index, :show]
-    patch '/customers/:id/ban' => 'customers#ban'
-    patch '/customers/:id/unban' => 'customers#unban', as: 'unban'
+    resources :users, only:[:index, :show]
+    patch '/users/:id/ban' => 'users#ban'
+    patch '/users/:id/unban' => 'users#unban', as: 'unban'
     resources :reports, only:[:index, :show]
     resources :requests, only:[:index, :show]
     resources :tickets, except:[:new, :show]

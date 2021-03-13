@@ -29,13 +29,13 @@ class Admins::UsersController < ApplicationController
 			end
 		end
 		@user.update(is_banned: true)
-		redirect_to admins_customer_path(@user)
+		redirect_to admins_user_path(@user)
 	end
 
 	def unban
 		@user = User.find(params[:id])
 		@user.update(is_banned: false)
-		redirect_to admins_customer_path(@user)
+		redirect_to admins_user_path(@user)
 	end
 
 end
