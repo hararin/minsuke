@@ -6,9 +6,12 @@ class User < ApplicationRecord
 
   has_many :requests
   has_many :participants
+  has_many :purchases
 
   validates :name, presence: true
   validates :ticket, presence: true
 
   attachment :image
+
+  include Discard::Model
 end

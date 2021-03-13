@@ -25,6 +25,22 @@ class Users::UsersController < ApplicationController
 		end
 	end
 
+	def withdraw
+		@user = current_user
+		any_requests_or_participants?(@user)
+		if @req_in_progress.blank? == false
+	    	redirect_to users_customer_path(@user), flash: { error: "進行中の依頼があるため退会できません。" }
+	    	return
+	    elsif @par_in_progress.blank? == false
+	    	redirect_to users_customer_path(@user), flash: { error: "進行中の助っ人があるため退会できません。" }
+	    	return
+	    else
+		    @user.discard
+			reset_session
+			redirect_to '/'
+	    end
+	end
+
 	private
 
 	def user_params

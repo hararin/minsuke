@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_222535) do
+ActiveRecord::Schema.define(version: 2021_03_13_095012) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2021_03_12_222535) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "payment_method", default: 0, null: false
+    t.integer "ticket_id", null: false
+    t.integer "quantity", null: false
+    t.integer "charge", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "requests", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "datetime", null: false
@@ -43,6 +53,14 @@ ActiveRecord::Schema.define(version: 2021_03_12_222535) do
     t.string "image_id"
     t.datetime "deadline", null: false
     t.integer "return_status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,6 +78,8 @@ ActiveRecord::Schema.define(version: 2021_03_12_222535) do
     t.integer "ticket", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

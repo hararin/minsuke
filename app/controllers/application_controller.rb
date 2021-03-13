@@ -8,6 +8,23 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def any_requests_or_participants?(user)
+	    @requests = user.requests.all
+	    @req_in_progress = []
+	    @participants = user.participants.all
+	    @par_in_progress = []
+	    @requests.each do |request|
+	    	if request.datetime >= DateTime.now
+	        	@req_in_progress.push(request)
+	    	end
+	    end
+	    @participants.each do |participant|
+	    	if participant.request.datetime >= DateTime.now
+	        	@par_in_progress.push(participant)
+	    	end
+	    end
+	end
+
 	protected
 
 	def configure_permitted_parameters
