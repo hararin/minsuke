@@ -53,7 +53,7 @@ class Users::RequestsController < ApplicationController
 	def destroy
 		@request.ticket_return_destroy(@request)
 		@request.destroy
-		redirect_to users_customer_path(current_user), flash: { error: "依頼を削除し、募集人数分のチケットが返還されました。" }
+		redirect_to users_user_path(current_user), flash: { error: "依頼を削除し、募集人数分のチケットが返還されました。" }
 	end
 
 	private

@@ -9,17 +9,27 @@
 .home {
 	text-align: left;
 	height: 800px;
-	background-image: url(4481879_m.jpg);
+	background-image: url(4365516_m.jpg);
 	background-position: center;
 	background-size: cover;
 	opacity : 1.0;
 	h1 {
 		font-size: 75px;
-		margin-top: 140px;
+		margin-top: 80px;
 	}
 	p {
 		font-weight: 900;
 	}
+}
+
+.midashi {
+	margin-bottom: 5px;
+	font-weight: bold;
+	border-bottom: 2px solid #000;
+}
+
+.usage {
+	font-weight: bolder;
 }
 
 .container {

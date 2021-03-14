@@ -1,9 +1,5 @@
 <div class="container">
-  <div class="row">
-    <div class="col-6 offset-3">
-      <h1>REQUEST</h1>
-    </div>
-  </div>
+  <h1>Request</h1>
   <% if flash[:error] %>
     <div class="row">
       <div class="col-sm-10 offset-sm-1 col-md-6 offset-md-3 error-message">
@@ -32,7 +28,7 @@
           </tr>
           <tr>
             <th>依頼者</th>
-            <td><%= link_to @request.user.name, users_user_path(@request.user) %></td>
+            <td><%= link_to @request.user.name, users_user_path(@request.user), class: "link" %></td>
           </tr>
           <tr>
             <th>日程</th>

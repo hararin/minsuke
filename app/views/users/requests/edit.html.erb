@@ -1,9 +1,5 @@
 <div class="container">
-	<div class="row">
-		<div class="col-6 offset-3">
-			<h1>EDIT REQUEST</h1>
-		</div>
-	</div>
+	<h1>Edit Request</h1>
 	<% if flash[:error] %>
 		<div class="error-message">
 			<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
@@ -15,23 +11,23 @@
 	    </div>
 	</div>
 	<div class="row">
-		<div class="col-sm-10 offset-sm-1 col-md-6 offset-md-3 form">
+		<div class="col-sm-10 offset-sm-1 col-md-6 offset-md-3 edit-form">
 			<%= form_with model: @request, local: true, url: users_request_path(@request), class: "form-horizontal" do |f| %>
 				<div class="form-group row">
-					<%= f.label :"タイトル", class: "col-sm-4 control-label" %>
-					<div class="col-sm-8">
+					<%= f.label :"タイトル", class: "col-4 control-label" %>
+					<div class="col-8">
 						<%= f.text_field :title, class: "form-control" %>
 					</div>
 				</div>
 				<div class="form-group row">
-					<%= f.label :"詳細", class: "col-sm-4 control-label" %>
-					<div class="col-sm-8">
+					<%= f.label :"詳細", class: "col-4 control-label" %>
+					<div class="col-8">
 						<%= f.text_area :content, class: "form-control" %>
 					</div>
 				</div>
 				<div class="form-group row">
-					<%= f.label :"日時", class: "col-sm-4 control-label" %>
-					<div class="input-group col-sm-8" data-target-input="nearest">
+					<%= f.label :"日時", class: "col-4 control-label" %>
+					<div class="input-group col-8" data-target-input="nearest">
 						<%= f.text_field :datetime, id: "datetime",class: "form-control datepicker", data: { target: '#datetime'} %>
 						<div class="input-group-append" data-target="#datetime" data-toggle="datetimepicker">
 				        	<div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -39,14 +35,14 @@
 					</div>
 				</div>
 			    <div class="form-group row">
-			    	<%= f.label :"住所", class: "col-sm-4 control-label" %>
-				    <div class="col-sm-8">
+			    	<%= f.label :"住所", class: "col-4 control-label" %>
+				    <div class="col-8">
 						<%= f.text_field :address, class: "form-control" %>
 					</div>
 			    </div>
 			    <div class="form-group row">
-			    	<%= f.label :"募集人数", class: "col-sm-4 control-label" %>
-				    <div class="col-sm-3">
+			    	<%= f.label :"募集人数", class: "col-4 control-label" %>
+				    <div class="col-3">
 						<%= f.select :capacity, options_for_select((1..99).to_a), class: "form-control" %>
 					</div>
 					<div class="caution" style="padding: 0 20px;">
@@ -54,8 +50,8 @@
 					</div>
 			    </div>
 				<div class="form-group row">
-					<%= f.label :"募集締切日時", class: "col-sm-4 control-label" %>
-					<div class="input-group col-sm-8" data-target-input="nearest">
+					<%= f.label :"募集締切日時", class: "col-4 control-label" %>
+					<div class="input-group col-8" data-target-input="nearest">
 						<%= f.text_field :deadline, id: "deadline",class: "form-control datepicker", data: { target: '#deadline'} %>
 						<div class="input-group-append" data-target="#deadline" data-toggle="datetimepicker">
 				        	<div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -63,8 +59,8 @@
 					</div>
 				</div>
 			    <div class="form-group row">
-			    	<%= f.label :"サムネイル", class: "col-sm-4 control-label" %>
-				    <div class="col-sm-8">
+			    	<%= f.label :"サムネイル", class: "col-4 control-label" %>
+				    <div class="col-8">
 						<%= f.attachment_field :image %>
 					</div>
 			    </div>

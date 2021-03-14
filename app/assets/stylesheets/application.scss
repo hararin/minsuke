@@ -27,16 +27,36 @@
 @import "tempusdominus-bootstrap-4.css";
 
 body {
-	font-weight: bold;
+	font-weight: 500;
 	background-color: #EEEEEE;
 	margin-bottom: 60px;
-	font-family:Impact,"MS Pゴシック",sans-serif;
   text-align: center;
+}
+
+.link {
+  color: #000;
+}
+
+.link:hover {
+  text-decoration: none;
+  font-weight: bolder;
+  color: gray;
+}
+
+.nav-link:hover {
+  font-weight: bolder;
+  font-size: 17px;
 }
 
 .pagination > li > a {
   border: none;
   color: #000;
+}
+
+h1 {
+  text-align: left;
+  border-bottom: 1px solid #000;
+  margin-bottom: 30px;
 }
 
 
@@ -51,7 +71,6 @@ body {
 
 table {
 	background-color: #fff;
-  border-radius: 10px;
 }
 
 .img {
@@ -78,10 +97,9 @@ table {
 	color: #fff;
 }
 
-.login-form, .signup-form, .report-form, .ticket-form, .edit-user-form, .purchase-form {
+.login-form, .signup-form, .report-form, .ticket-form, .edit-user-form, .purchase-form, .request-form, .edit-form {
 	padding: 20px;
 	background-color: #fff;
-  border-radius: 10px;
 }
 
 .table-title {
@@ -98,7 +116,7 @@ html {
   bottom: 0;
   width: 100%;
   height: 60px;
-  background-color: #000;
+  background-color: #fff;
 }
 .footer-container {
   width: auto;
@@ -117,6 +135,6 @@ html {
 
 .footer-link:hover {
   font-size: 8px;
-  color: #fff;
+  color: #000;
   text-decoration: none;
 }
