@@ -12,7 +12,23 @@
       <table class="table table-bordered table-title">
         <thead>
           <tr>
-            <th>依頼詳細</th>
+            <th>
+              依頼詳細
+              <% if DateTime.now < @request.datetime %>
+                <% if @request.user.id == current_user.id %>
+                  <div style="float: right;">
+                    <%= link_to edit_users_request_path do %>
+                      <i class="fa fa-edit"></i>
+                    <% end %>
+                    <%= link_to users_request_path, method: :delete, data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に依頼を削除しますか？",
+                                                       cancel: "戻る",
+                                                       commit: '削除する' } do %>
+                      <i class="fa fa-trash"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+            </th>
           </tr>
         </thead>
       </table>
@@ -115,19 +131,6 @@
       <% end %>
     </div>
   </div>
-  <% if DateTime.now >= @request.datetime %>
-  <% else %>
-    <div class="row">
-      <div class="col-sm-6 offset-sm-3">
-        <% if @request.user.id == current_user.id %>
-          <%= link_to "編集する", edit_users_request_path, class: "btn btn-outline-success" %>
-          <%= link_to "削除する", users_request_path, method: :delete, class: "btn btn-outline-danger", data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に依頼を削除しますか？",
-                                                     cancel: "戻る",
-                                                     commit: '削除する' } %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
 </div>
 
 <script type="text/javascript">

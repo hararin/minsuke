@@ -11,7 +11,7 @@
 
   <body>
     <div>
-      <nav class="navbar navbar-expand-md navbar-light bg-lightshadow-lg p-3 bg-white" style="background-color: #fff">
+      <nav class="navbar navbar-expand-lg navbar-light bg-lightshadow-lg p-3 bg-white" style="background-color: #fff">
         <a class="navbar-brand" href="/">M I N S U K E</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -19,21 +19,27 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <%= link_to "M I N S U K E について", about_path, class: "nav-link" %>
+              <%= link_to about_path, class: "nav-link" do %>
+                <i class="fa fa-exclamation-circle"></i> M I N S U K E について
+              <% end %>
             </li>
             <% if current_user %>
               <li class="nav-item">
-                <%= link_to "マイページ", users_user_path(current_user), class: "nav-link" %>
+                <%= link_to users_user_path(current_user), class: "nav-link" do %>
+                  <i class="fa fa-user"></i> マイページ
+                <% end %>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">助っ人依頼</a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-thumbs-up"></i> 助っ人依頼</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <%= link_to "依頼一覧", users_requests_path, class: "dropdown-item" %><br>
                   <%= link_to "依頼投稿", new_users_request_path, class: "dropdown-item" %><br>
                 </div>
               </li>
               <li class="nav-item">
-                <%= link_to "チケット", new_users_purchase_path, class: "nav-link" %>
+                <%= link_to new_users_purchase_path, class: "nav-link" do %>
+                  <i class="fa fa-file"></i> チケット
+                <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link btn btn-danger", style: "color: #fff" %>

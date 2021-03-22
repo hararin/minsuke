@@ -16,6 +16,14 @@ class Request < ApplicationRecord
 
 	attachment :image
 
+  def self.search(search)
+    if search
+      Request.where(['content LIKE ? or title LIKE ? or address LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%"])
+    else
+      Request.all
+    end
+  end
+
     def ticket_return(request)
       if request.return_status == 0
         if DateTime.now >= request.datetime

@@ -1,5 +1,15 @@
 <div class="container">
-	<h3 class="col-12 col-md-12">依頼一覧</h3>
+	<h3 class="col-12 col-md-12" style=" margin-bottom: 15px;">
+		依頼一覧
+	</h3>
+	<div class="search-form">
+		<%= form_tag(users_requests_path,:method => 'get') do %>
+		  	<%= text_field_tag :search %>
+		  	<%= button_tag :type => "submit", style: 'border-style: none;' do %>
+		  		<i class="fa fa-search"></i>
+		  	<% end %>
+		<% end %>
+	</div>
 	<div class="row d-flex flex-wrap">
 		<% @requests.each do |request| %>
 			<div class="req-box col-12 col-md-6 offset-md-0">

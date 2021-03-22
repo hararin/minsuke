@@ -19,12 +19,17 @@
 				<%= attachment_image_tag @user, :image, format: 'jpeg', class: "img" %>
 			</div>
 			<div class="user-info">
-				<p><%= @user.name %></p>
+				<p>
+					<%= @user.name %>
+					<% if @user.id == current_user.id %>
+						<%= link_to edit_users_user_path(@user) do %>
+							<i class="fa fa-edit"></i>
+						<% end %>
+					<% end %>
+				</p>
 				<p><%= @user.introduction %></p>
 			</div>
-			<% if @user.id == current_user.id %>
-				<%= link_to "編集する", edit_users_user_path(@user), class: "btn btn-outline-success" %>
-			<% end %>
+
 		</div>
 	</div>
 	<div class="row">

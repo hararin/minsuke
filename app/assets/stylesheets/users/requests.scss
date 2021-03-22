@@ -8,6 +8,14 @@
   color: red;
 }
 
+.search-form {
+  margin-bottom: 15px;
+  text-align: right;
+  .fa-search {
+    padding: 0 5px;
+  }
+}
+
 .req-box {
   position: relative;
   border: 1px solid #EEEEEE;
