@@ -1,17 +1,17 @@
 <div class="container">
-	<h1>Edit Request</h1>
+	<h3 class="col-sm-12 col-md-8 offset-md-2">依頼編集</h3>
 	<% if flash[:error] %>
 		<div class="error-message">
 			<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
 		</div>
 	<% end %>
 	<div class="row">
-	    <div class="col-sm-10 offset-sm-1 col-md-6 offset-md-3">
+	    <div class="col-sm-12 col-md-8 offset-md-2">
 	    	<%= render 'layouts/error_messages', model: @request %>
 	    </div>
 	</div>
 	<div class="row">
-		<div class="col-sm-10 offset-sm-1 col-md-6 offset-md-3 edit-form">
+		<div class="col-sm-12 col-md-8 offset-md-2 edit-form">
 			<%= form_with model: @request, local: true, url: users_request_path(@request), class: "form-horizontal" do |f| %>
 				<div class="form-group row">
 					<%= f.label :"タイトル", class: "col-4 control-label" %>
@@ -42,11 +42,8 @@
 			    </div>
 			    <div class="form-group row">
 			    	<%= f.label :"募集人数", class: "col-4 control-label" %>
-				    <div class="col-3">
-						<%= f.select :capacity, options_for_select((1..99).to_a), class: "form-control" %>
-					</div>
-					<div class="caution" style="padding: 0 20px;">
-						<p>＊募集人数を変更した場合、変更前と変更後の差分のチケットが消費または返還されます。</p>
+				    <div class="col-6" style="text-align: left;">
+						<%= f.select :capacity, options_for_select((1..(@request.capacity + current_user.ticket)).to_a), class: "form-control" %>
 					</div>
 			    </div>
 				<div class="form-group row">
@@ -65,9 +62,12 @@
 					</div>
 			    </div>
 				<div>
-					<%= f.submit "更新する", class: "btn btn-success", style: "margin-bottom: 20px;" %>
+					<%= f.submit "更新する", class: "btn btn-success", style: "margin-bottom: 20px; width: 100%;" %>
 				</div>
 			<% end %>
+			<div class="caution">
+				<p>・*のついた項目は必ず入力してください。<br>・募集人数を変更した場合、変更前と変更後の差分のチケットが消費または返還されます。</p>
+			</div>
 		</div>
 	</div>
 </div>
