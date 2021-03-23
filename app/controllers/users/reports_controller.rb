@@ -6,6 +6,10 @@ class Users::ReportsController < ApplicationController
 	def new
 		@report = Report.new
 		@respondent = User.find(params[:user_id])
+		add_breadcrumb "ホーム" , root_path
+		add_breadcrumb "マイページ" , users_user_path(current_user)
+		add_breadcrumb "ユーザー詳細" , users_user_path(@respondent)
+		add_breadcrumb "通報"
 	end
 
 	def create

@@ -1,5 +1,7 @@
 <div class="container-fluid">
-	<%= render_breadcrumbs separator: ' > ' %>
+	<ol class="breadcrumb">
+	    <%= render_breadcrumbs :tag => :li, :separator => " > " %>
+	</ol>
 	<h3 class="col-12 col-sm-12 col-md-8 offset-md-2">依頼作成</h3>
 	<% if flash[:error] %>
 		<div class="error-message">

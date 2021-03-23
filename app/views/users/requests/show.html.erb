@@ -1,8 +1,10 @@
 <div class="container-fluid">
-  <%= render_breadcrumbs separator: ' > ' %>
+  <ol class="breadcrumb">
+    <%= render_breadcrumbs :tag => :li, :separator => " > " %>
+  </ol>
   <div class="row">
     <%= render 'layouts/profile', user: current_user %>
-    <div class="col-sm-12 col-md-8 col-lg-9">
+    <div class="col-sm-12 col-md-8">
       <% if flash[:error] %>
         <div class="row">
           <div class="col-sm-12 col-md-6 offset-md-3 error-message">
@@ -11,7 +13,7 @@
         </div>
       <% end %>
       <div class="row">
-        <h3 class="col-12 col-md-12">依頼詳細</h3>
+        <h3 class="col-12 col-md-12 shadow p-3 mb-3 bg-white rounded"><%= @request.title %></h3>
         <div class="col-sm-12 col-md-12 col-lg-7">
           <table class="table table-bordered table-title">
             <thead>
@@ -22,12 +24,12 @@
                     <% if @request.user.id == current_user.id %>
                       <div style="float: right;">
                         <%= link_to edit_users_request_path do %>
-                          <i class="fa fa-edit fa-lg"></i>
+                          <i class="fa fa-edit fa-lg" style="color: green;"></i>
                         <% end %>
                         <%= link_to users_request_path, method: :delete, data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に依頼を削除しますか？",
                                                            cancel: "戻る",
                                                            commit: '削除する' } do %>
-                          <i class="fa fa-trash fa-lg"></i>
+                          <i class="fa fa-trash fa-lg" style="color: red;"></i>
                         <% end %>
                       </div>
                     <% end %>
@@ -36,7 +38,7 @@
               </tr>
             </thead>
           </table>
-          <table class="table table-bordered">
+          <table class="table table-bordered table-striped">
             <tbody>
               <tr>
                 <th>タイトル</th>
@@ -55,7 +57,7 @@
                 <td><%= @request.datetime %></td>
               </tr>
               <tr>
-                <th>開催場所</th>
+                <th>住所</th>
                 <td>
                   <p><%= @request.address %></p>
                 </td>

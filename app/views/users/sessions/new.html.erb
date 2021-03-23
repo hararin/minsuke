@@ -1,9 +1,4 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3">
-      <h3>ログイン</h3>
-    </div>
-  </div>
+<div class="container-fluid">
   <% if flash[:error] %>
     <div class="row">
       <div class="col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3 alert alert-warning">
@@ -11,6 +6,7 @@
       </div>
     </div>
   <% end %>
+  <h3 class="col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3">ログイン</h3>
   <div class="row">
     <div class="col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3 login-form">
       <%= form_for(resource, as: resource_name, local: true, url: session_path(resource_name)) do |f| %>
@@ -30,9 +26,12 @@
           <%= f.submit "ログイン", class: "btn btn-success", style: "width: 100%;" %>
         </div>
         <hr class="my-4">
-        <p>ユーザー登録がまだの方はこちら</p>
-        <%= link_to "ユーザー登録", new_user_registration_path, class: "btn btn-sm btn-outline-primary" %>
-      <% end %>
+        <div style="text-align: center;">
+          <p>ユーザー登録がまだの方はこちら</p>
+            <%= link_to "ユーザー登録", new_user_registration_path, class: "btn btn-sm btn-outline-primary" %>
+          <% end %>
+        </div>
+        
     </div>
   </div>
 </div>

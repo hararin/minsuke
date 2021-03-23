@@ -11,7 +11,7 @@ class Users::UsersController < ApplicationController
 			request.ticket_return(request)
 		end
 		add_breadcrumb "ホーム" , root_path
-		add_breadcrumb 'ユーザー詳細'
+		add_breadcrumb "ユーザー詳細" , users_user_path(@user)
 	end
 
 	def edit

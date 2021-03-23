@@ -1,8 +1,11 @@
+<% set_meta_tags title: '助っ人依頼一覧', description: '多くの人々が助っ人を必要としています。' %>
 <div class="container-fluid">
-	<%= render_breadcrumbs separator: ' > ' %>
+	<ol class="breadcrumb">
+	    <%= render_breadcrumbs :tag => :li, :separator => " > " %>
+	</ol>
 	<div class="row">
 		<%= render 'layouts/profile', user: current_user %>
-		<div class="col-12 col-sm-12 col-md-8 col-lg-9">
+		<div class="col-12 col-sm-12 col-md-8">
 			<div class="row">
 				<h3 class="col-12 col-md-12" style=" margin-bottom: 15px;">
 					依頼一覧
