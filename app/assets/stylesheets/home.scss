@@ -41,6 +41,13 @@
 
 .about {
 	text-align: left;
+	.request-info {
+		width: 100px;
+		height: 150px;
+		text-align: center;
+		background-image: url(request.jpg);
+		background-repeat: no-repeat;
+	}
 }
 
 .about-btn {

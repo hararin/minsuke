@@ -1,45 +1,42 @@
 <div class="container">
-	<h3 class="col-sm-12 col-md-6 offset-md-3">ユーザー詳細</h3>
-	<% if flash[:notice] %>
-		<div class="row">
-			<div class="col-sm-12 col-md-6 offset-md-3 notice-message">
+	<div class="row">
+		<% if flash[:notice] %>
+			<div class="col-sm-12 notice-message">
 				<%= flash[:notice] %>
 			</div>
-		</div>
-	<% elsif flash[:error] %>
-		<div class="row">
-			<div class="col-sm-12 col-md-6 offset-md-3 error-message">
+		<% elsif flash[:error] %>
+			<div class="col-12 error-message">
 				<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
 			</div>
-		</div>
-	<% end %>
-	<div class="row no-gutters">
-		<div class="col-8 offset-2 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 user">
-			<div class="user-img">
-				<%= attachment_image_tag @user, :image, format: 'jpeg', class: "img" %>
+		<% end %>
+		<h3 class="col-12">
+			ユーザー詳細
+			<% if @user.id != current_user.id %>
+				<%= link_to new_users_user_report_path(@user) do %>
+					<button class="btn btn-danger" style="float: right;"><i class="fa fa-bullhorn fa-lg" style="color: #fff;"></i></button>
+				<% end %>
+			<% end %>
+		</h3>
+		<div class="col-12 user-info">
+			<div>
+				<%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', class: "prof-img" %>
 			</div>
-			<div class="user-info">
-				<p>
-					<%= @user.name %>
+			<div class="user-text">
+				<h5>
+					<i class="fa fa-user"></i> <%= @user.name %>
 					<% if @user.id == current_user.id %>
+						<i class="fa fa-ticket"></i> x <%= @user.ticket %>
 						<%= link_to edit_users_user_path(@user) do %>
-							<i class="fa fa-edit"></i>
+							<i class="fa fa-edit fa-lg"></i>
 						<% end %>
 					<% end %>
-				</p>
+				</h5>
 				<p><%= @user.introduction %></p>
 			</div>
-
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-8 col-md-6 offset-sm-2 offset-md-3">
-			<input class="btn btn-dark" value="依頼履歴を表示" type="button" onclick="clickBtn1()" style="margin-top: 20px;"/>
-			<input class="btn btn-dark" value="助っ人履歴を表示" type="button" onclick="clickBtn2()" style="margin-top: 20px;"/>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-12 col-md-6 col-lg-5 offset-lg-1" id="user-table1">
+		<div class="col-sm-12 col-lg-6">
 			<table class="table table-bordered table-title">
 				<thead>
 					<tr>
@@ -47,39 +44,29 @@
 					</tr>
 				</thead>
 			</table>
-			<% if @requests.exists? %>
-				<table class="table table-bordered">
-					<tbody>
-						<% @num = 1 %>
-						<% @requests.each do |request| %>
-							<tr>
-								<th><%= @num %></th>
-								<td><%= link_to request.title, users_request_path(request) %></td>
-								<td><%= request.datetime.strftime('%Y/%m/%d') %></td>
-								<td>
-									<% if DateTime.now > request.datetime %>
-										済
-									<% else %>
-										未
-									<% end %>
-								</td>
-							</tr>
-							<% @num = @num + 1 %>
-						<% end %>
-					</tbody>
-				</table>
-			<% else %>
-				<table class="table table-bordered">
-					<tbody>
-						<tr>
-							<td>依頼履歴はありません</td>
-						</tr>
-					</tbody>
-				</table>
+			<% @requests.each do |request| %>
+				<div class="req-box col-12">
+					<div class="req-img">
+						<%= attachment_image_tag request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '130x100' %>
+						<p>依頼者 : <%= link_to request.user.name, users_user_path(request.user), class: "link" %></p>
+					</div>
+					<div class="req-text">
+						<p class="title">
+							<% if DateTime.now <= request.datetime %>
+								<span class="badge badge-success">進行中</span>
+							<% else %>
+								<span class="badge badge-danger">終了</span>
+							<% end %>
+							<%= link_to request.title, users_request_path(request), class: "link" %>
+						</p>
+						<p class="content"><%= request.content %></p>
+						<p class="req-info"><%= request.created_at %><br>助っ人登録数 : <%= request.participants.count %>/<%= request.capacity %></p>
+					</div>
+				</div>
 			<% end %>
 			<%= paginate @requests %>
 		</div>
-		<div class="col-sm-12 col-md-6 col-lg-5" id="user-table2">
+		<div class="col-sm-12 col-lg-6">
 			<table class="table table-bordered table-title">
 				<thead>
 					<tr>
@@ -87,65 +74,27 @@
 					</tr>
 				</thead>
 			</table>
-			<% if @participants.exists? %>
-				<table class="table table-bordered">
-					<tbody>
-						<% @num = 1 %>
-						<% @participants.each do |participant| %>
-							<tr>
-								<th><%= @num %></th>
-								<td><%= link_to participant.request.title, users_request_path(participant.request) %></td>
-								<td><%= participant.request.datetime.strftime('%Y/%m/%d') %></td>
-								<td>
-									<% if DateTime.now > participant.request.datetime %>
-										済
-									<% else %>
-										未
-									<% end %>
-								</td>
-							</tr>
-							<% @num = @num + 1 %>
-						<% end %>
-					</tbody>
-				</table>
-			<% else %>
-				<table class="table table-bordered">
-					<tbody>
-						<tr>
-							<td>助っ人履歴はありません</td>
-						</tr>
-					</tbody>
-				</table>
+			<% @participants.each do |participant| %>
+				<div class="req-box col-12">
+					<div class="req-img">
+						<%= attachment_image_tag participant.request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '130x100' %>
+						<p>依頼者 : <%= link_to participant.request.user.name, users_user_path(participant.request.user), class: "link" %></p>
+					</div>
+					<div class="req-text">
+						<p class="title">
+							<% if DateTime.now <= participant.request.datetime %>
+								<span class="badge badge-success">進行中</span>
+							<% else %>
+								<span class="badge badge-danger">終了</span>
+							<% end %>
+							<%= link_to participant.request.title, users_request_path(participant.request), class: "link" %>
+						</p>
+						<p class="content"><%= participant.request.content %></p>
+						<p class="req-info"><%= participant.request.created_at %><br>助っ人登録数 : <%= participant.request.participants.count %>/<%= participant.request.capacity %></p>
+					</div>
+				</div>
 			<% end %>
 			<%= paginate @participants %>
 		</div>
 	</div>
-	<% if @user != current_user %>
-		<div class="row">
-			<div class="col-sm-8 col-md-6 offset-sm-2 offset-md-3">
-				<%= link_to "通報する", new_users_user_report_path(@user), class: "btn btn-outline-danger", style: "margin-top: 20px;" %>
-			</div>
-		</div>
-	<% end %>
 </div>
-
-<script>
-document.getElementById("user-table1").style.display = "none";
-function clickBtn1(){
-	const table1 = document.getElementById("user-table1");
-	if (table1.style.display == "block"){
-		table1.style.display = "none";
-	} else {
-		table1.style.display = "block";
-	}
-}
-document.getElementById("user-table2").style.display = "none";
-function clickBtn2(){
-	const table2 = document.getElementById("user-table2");
-	if (table2.style.display == "block"){
-		table2.style.display = "none";
-	} else {
-		table2.style.display = "block";
-	}
-}
-</script>

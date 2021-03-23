@@ -1,27 +1,34 @@
 <div class="container">
 	<div class="row">
-		<div class="col-6 offset-3">
-			<h1>REPORT</h1>
+		<div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+			<%= render 'layouts/error_messages', model: @report %>
+			<h3>通報</h3>
 		</div>
 	</div>
 	<div class="row">
-	    <div class="col-12 col-md-8 offset-md-2">
-	    	<%= render 'layouts/error_messages', model: @report %>
-	    </div>
-	</div>
-	<div class="row">
-		<div class="col-12 col-md-8 offset-md-2 report-form">
-			<p>以下のユーザーを通報します。</p>
-			<p><%= @respondent.name %></p>
+		<div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 report-form">
 			<%= form_with model: @report, local: true, url: users_user_reports_path(@respondent), method: :post do |f| %>
-				<div class="row">
-					<%= f.text_area :content, class: "form-control col-10 offset-1 col-md-8 offset-md-2", :placeholder => "通報理由を入力してください・" %>
+				<div class="form-group row">
+					<%= f.label :"通報するユーザー", class: "col-4 col-form-label" %>
+					<div class="col-8">
+						<%= f.text_field :content, class: "form-control", :placeholder => @respondent.name, :disabled => true %>
+					</div>
+				</div>
+				<div class="form-group row">
+					<%= f.label :"", class: "col-4 col-form-label" do %>
+						通報理由 <span class="badge badge-danger">必須</span>
+					<% end %>
+					<div class="col-8">
+						<%= f.text_area :content, class: "form-control" %>
+					</div>
 				</div>
 				<div style="margin: 20px;">
-					<%= f.submit "通報する", class: "btn btn-danger" %>
+					<%= f.submit "通報する", class: "btn btn-danger", style: "width: 100%;" %>
 				</div>
 			<% end %>
-			<p>・通報理由を必ず入力してください。<br>・通報後は取り消すことができません。</p>
+			<div class="caution">
+				<p>・通報理由を必ず入力してください。<br>・通報後は取り消すことができません。</p>
+			</div>
 		</div>
 	</div>
 </div>

@@ -8,33 +8,14 @@
 	color: green;
 }
 
-.no-gutters {
-	margin: 0;
-	padding: 0;
-}
-
-.no-gutters {
-	.col {
-		margin: 0;
-		padding: 0;
+.user-info {
+	display: flex;
+	.user-text {
+		margin-left: 30px;
 	}
 }
 
-.user {
-	padding-bottom: 20px;
-	background-color: #fff;
-	border-radius: 10px;
-	.user-img {
-		margin-bottom: 15px;
-	}
-	.user-info {
-		margin-bottom: 15px;
-		p {
-			margin: 5px 0;
-			padding: 0 10px;
-		}
-	}
-}
+
 
 .table-title {
 	margin-top: 20px;

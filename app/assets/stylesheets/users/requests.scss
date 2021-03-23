@@ -33,7 +33,6 @@
     margin-left: 20px;
     .title {
       margin-bottom: 5px;
-      border-bottom: 1px solid #000;
       overflow-wrap: break-all;
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -59,6 +58,9 @@
   }
 }
 
+.fa-trash, .fa-edit {
+  padding : 0 5px;
+}
 
 
 .background {

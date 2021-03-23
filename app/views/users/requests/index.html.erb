@@ -1,30 +1,44 @@
 <div class="container">
-	<h3 class="col-12 col-md-12" style=" margin-bottom: 15px;">
-		依頼一覧
-	</h3>
-	<div class="search-form">
-		<%= form_tag(users_requests_path,:method => 'get') do %>
-		  	<%= text_field_tag :search %>
-		  	<%= button_tag :type => "submit", style: 'border-style: none;' do %>
-		  		<i class="fa fa-search"></i>
-		  	<% end %>
-		<% end %>
-	</div>
-	<div class="row d-flex flex-wrap">
-		<% @requests.each do |request| %>
-			<div class="req-box col-12 col-md-6 offset-md-0">
-				<div class="req-img">
-					<%= attachment_image_tag request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '130x100' %>
-					<p>依頼者 : <%= link_to request.user.name, users_user_path(request.user), class: "link" %></p>
-				</div>
-				<div class="req-text">
-					<p class="title"><%= link_to request.title, users_request_path(request), class: "link" %></p>
-					<p class="content"><%= request.content %></p>
-					<p class="req-info"><%= request.created_at %><br>助っ人登録数 : <%= request.participants.count %>/<%= request.capacity %></p>
+	<div class="row">
+		<%= render 'layouts/profile', user: current_user %>
+		<div class="col-sm-12 col-md-8 col-lg-9">
+			<div class="row">
+				<h3 class="col-12 col-md-12" style=" margin-bottom: 15px;">
+					依頼一覧
+				</h3>
+				<div class="col-6">" <%= params[:search] %> "の検索結果</div>
+				<div class="search-form col-6">
+					<%= form_tag(users_requests_path,:method => 'get') do %>
+					  	<%= text_field_tag :search %>
+					  	<%= button_tag :type => "submit", style: 'border-style: none;' do %>
+					  		<i class="fa fa-search"></i>
+					  	<% end %>
+					<% end %>
 				</div>
 			</div>
-		<% end %>
+			<div class="row d-flex flex-wrap">
+				<% @requests.each do |request| %>
+					<div class="req-box col-12 col-lg-6">
+						<div class="req-img">
+							<%= attachment_image_tag request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '130x100' %>
+							<p>依頼者 : <%= link_to request.user.name, users_user_path(request.user), class: "link" %></p>
+						</div>
+						<div class="req-text">
+							<p class="title">
+								<% if DateTime.now <= request.datetime %>
+									<span class="badge badge-success">進行中</span>
+								<% else %>
+									<span class="badge badge-danger">終了</span>
+								<% end %>
+								<%= link_to request.title, users_request_path(request), class: "link" %>
+							</p>
+							<p class="content"><%= request.content %></p>
+							<p class="req-info"><%= request.created_at %><br>助っ人登録数 : <%= request.participants.count %>/<%= request.capacity %></p>
+						</div>
+					</div>
+				<% end %>
+				<%= paginate @requests %>
+			</div>
+		</div>
 	</div>
-
-	<%= paginate @requests %>
 </div>
