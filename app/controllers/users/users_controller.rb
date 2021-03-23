@@ -10,10 +10,15 @@ class Users::UsersController < ApplicationController
 		@requests.each do |request|
 			request.ticket_return(request)
 		end
+		add_breadcrumb "ホーム" , root_path
+		add_breadcrumb 'ユーザー詳細'
 	end
 
 	def edit
 		@user = current_user
+		add_breadcrumb "ホーム" , root_path
+		add_breadcrumb 'マイページ', users_user_path(current_user)
+		add_breadcrumb 'ユーザー編集'
 	end
 
 	def update

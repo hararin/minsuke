@@ -6,10 +6,15 @@ class Users::RequestsController < ApplicationController
 
 	def index
 		@requests = Request.search(params[:search]).page(params[:page]).per(10)
+		add_breadcrumb "ホーム" , root_path
+		add_breadcrumb '依頼一覧'
 	end
 
 	def new
 		@request = Request.new
+		add_breadcrumb "ホーム" , root_path
+		add_breadcrumb "マイページ" , users_user_path(current_user)
+		add_breadcrumb '依頼作成'
 	end
 
 	def create
@@ -31,9 +36,16 @@ class Users::RequestsController < ApplicationController
 		@participants = @request.participants.all
 		@participant = Participant.find_by(request_id: @request.id,
 										   user_id: current_user.id)
+		add_breadcrumb 'ホーム', root_path
+		add_breadcrumb '依頼一覧', users_requests_path
+		add_breadcrumb '依頼詳細'
 	end
 
 	def edit
+		add_breadcrumb 'ホーム', root_path
+		add_breadcrumb "マイページ" , users_user_path(current_user)
+		add_breadcrumb '依頼詳細', users_request_path(@request)
+		add_breadcrumb '依頼編集'
 	end
 
 	def update

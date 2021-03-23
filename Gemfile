@@ -81,6 +81,7 @@ gem "dotenv-rails"
 gem "kaminari"
 gem 'rails-i18n'
 gem "discard"
+gem 'breadcrumbs_on_rails'
 
 group :production do
   gem 'pg'

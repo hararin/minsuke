@@ -1,4 +1,5 @@
-<div class="container">
+<div class="container-fluid">
+	<%= render_breadcrumbs separator: ' > ' %>
 	<% if flash[:error] %>
 		<div class="error-message">
 			<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>

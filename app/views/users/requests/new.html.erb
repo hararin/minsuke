@@ -1,17 +1,18 @@
-<div class="container">
-	<h3 class="col-sm-12 col-md-8 offset-md-2">依頼作成</h3>
+<div class="container-fluid">
+	<%= render_breadcrumbs separator: ' > ' %>
+	<h3 class="col-12 col-sm-12 col-md-8 offset-md-2">依頼作成</h3>
 	<% if flash[:error] %>
 		<div class="error-message">
 			<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
 		</div>
 	<% end %>
 	<div class="row">
-	    <div class="col-sm-12 col-md-8 offset-md-2">
+	    <div class="col-12 col-sm-12 col-md-8 offset-md-2">
 	    	<%= render 'layouts/error_messages', model: @request %>
 	    </div>
 	</div>
 	<div class="row">
-		<div class="col-sm-12 col-md-8 offset-md-2 request-form">
+		<div class="col-12 col-sm-12 col-md-8 offset-md-2 request-form">
 			<%= form_with model: @request, local: true, url: users_requests_path, method: :post, class: "form-horizontal" do |f| %>
 				<div class="form-group row">
 					<%= f.label :"", class: "col-4 col-form-label" do %>
