@@ -1,10 +1,10 @@
-<div class="container-fluid">
+<div class="container">
 	<ol class="breadcrumb">
 	    <%= render_breadcrumbs :tag => :li, :separator => " > " %>
 	</ol>
 	<div class="row">
 		<% if flash[:notice] %>
-			<div class="col-sm-12 notice-message">
+			<div class="col-12 notice-message">
 				<%= flash[:notice] %>
 			</div>
 		<% elsif flash[:error] %>
@@ -12,30 +12,32 @@
 				<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
 			</div>
 		<% end %>
-		<div class="col-12 col-md-10 col-lg-8 user-info shadow-sm p-3 mb-3 bg-white rounded">
-			<div>
-				<%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', class: "prof-img" %>
-			</div>
-			<div class="user-text">
-				<h5>
-					<i class="fa fa-user"></i> <%= @user.name %>
-					<% if @user.id == current_user.id %>
-						<i class="fa fa-ticket"></i> x <%= @user.ticket %>
-						<%= link_to edit_users_user_path(@user) do %>
-							<i class="fa fa-edit fa-lg"></i>
+		<div class="col-12 col-md-8 user-info">
+			<div class="row">
+				<div class="col-12 col-sm-3">
+					<%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', class: "prof-img" %>
+				</div>
+				<div class="col-12 col-sm-9 user-text">
+					<h5>
+						<%= @user.name %>
+						<% if @user.id == current_user.id %>
+							<i class="fa fa-ticket"></i>x<%= @user.ticket %>
+							<%= link_to edit_users_user_path(@user) do %>
+								<i class="fa fa-edit fa-lg" style="color: green;"></i>
+							<% end %>
+						<% else %>
+							<%= link_to new_users_user_report_path(@user) do %>
+								<i class="fa fa-bullhorn fa-lg" style="color: red;"></i>
+							<% end %>
 						<% end %>
-					<% else %>
-						<%= link_to new_users_user_report_path(@user) do %>
-							<i class="fa fa-bullhorn fa-lg" style="color: red;"></i>
-						<% end %>
-					<% end %>
-				</h5>
-				<p><%= @user.introduction %></p>
+					</h5>
+					<p><%= @user.introduction %></p>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-12 col-lg-6">
+		<div class="col-12 col-lg-6">
 			<table class="table table-bordered table-title">
 				<thead>
 					<tr>
@@ -65,7 +67,7 @@
 			<% end %>
 			<%= paginate @requests %>
 		</div>
-		<div class="col-sm-12 col-lg-6">
+		<div class="col-12 col-lg-6">
 			<table class="table table-bordered table-title">
 				<thead>
 					<tr>

@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
 	<ol class="breadcrumb">
 	    <%= render_breadcrumbs :tag => :li, :separator => " > " %>
 	</ol>
@@ -14,7 +14,7 @@
 				<div class="form-group row">
 					<%= f.label :"通報するユーザー", class: "col-4 col-form-label" %>
 					<div class="col-8">
-						<%= f.text_field :content, class: "form-control", :placeholder => @respondent.name, :disabled => true %>
+						<%= f.text_field :content, class: "form-control form", :placeholder => @respondent.name, :disabled => true %>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -22,7 +22,7 @@
 						通報理由 <span class="badge badge-danger">必須</span>
 					<% end %>
 					<div class="col-8">
-						<%= f.text_area :content, class: "form-control" %>
+						<%= f.text_area :content, class: "form-control form" %>
 					</div>
 				</div>
 				<div style="margin: 20px;">

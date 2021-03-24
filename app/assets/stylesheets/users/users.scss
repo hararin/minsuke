@@ -9,13 +9,15 @@
 }
 
 .user-info {
-	display: flex;
+	margin: 30px 0;
+	text-align: center;
+	.prof-img {
+		border-radius: 50%;
+	}
 	.user-text {
-		margin-left: 30px;
+		text-align: left;
 	}
 }
-
-
 
 .table-title {
 	margin-top: 20px;

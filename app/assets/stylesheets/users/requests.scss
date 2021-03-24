@@ -8,6 +8,13 @@
   color: red;
 }
 
+.requests-box {
+  border: 1px solid #DDDDDD;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .search-form {
   margin-bottom: 15px;
   text-align: right;
@@ -18,11 +25,13 @@
 
 .req-box {
   position: relative;
-  border: 1px solid #EEEEEE;
   background-color: #fff;
   display: flex;
   padding: 15px 0;
   .req-img {
+    .thumbnail {
+      border-radius: 10px;
+    }
     p {
       font-size: 12px;
       margin-top: 10px;
@@ -56,6 +65,9 @@
       color: gray;
     }
   }
+}
+.req-box:hover {
+  opacity: 0.5;
 }
 
 .fa-trash, .fa-edit {

@@ -4,6 +4,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= display_meta_tags(default_meta_tags) %>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,7 +13,7 @@
 
   <body>
     <div class="sticky-top">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3" style="background-color: #fff">
+      <nav class="navbar navbar-expand-lg navbar-dark shadow-lg p-3" style="background-color: #000033">
         <a class="navbar-brand" href="/">M I N S U K E</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -20,7 +22,7 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <%= link_to about_path, class: "nav-link" do %>
-                <i class="fa fa-exclamation-circle"></i> M I N S U K E について
+                <i class="fa fa-exclamation-circle"></i> 利用方法
               <% end %>
             </li>
             <% if current_user %>
@@ -32,8 +34,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-thumbs-up"></i> 助っ人依頼</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <%= link_to "依頼一覧", users_requests_path, class: "dropdown-item" %><br>
-                  <%= link_to "依頼投稿", new_users_request_path, class: "dropdown-item" %><br>
+                  <%= link_to "依頼一覧", users_requests_path, class: "dropdown-item nav-link" %><br>
+                  <%= link_to "依頼投稿", new_users_request_path, class: "dropdown-item nav-link" %><br>
                 </div>
               </li>
               <li class="nav-item">
@@ -79,11 +81,11 @@
     <footer class="footer">
       <div class="footer-container">
         <% if current_user %>
-          <p class="text-muted"><%= link_to "M I N S U K E について", about_path, class: "footer-link" %> <%= link_to "マイページ", users_user_path(current_user), class: "footer-link" %> <%= link_to "依頼一覧", users_requests_path, class: "footer-link" %> <%= link_to "依頼投稿", new_users_request_path, class: "footer-link" %> <%= link_to "チケット購入", new_users_purchase_path, class: "footer-link" %></p>
+          <p class="text-muted"><%= link_to " 利用方法", about_path, class: "footer-link" %> <%= link_to "マイページ", users_user_path(current_user), class: "footer-link" %> <%= link_to "依頼一覧", users_requests_path, class: "footer-link" %> <%= link_to "依頼投稿", new_users_request_path, class: "footer-link" %> <%= link_to "チケット購入", new_users_purchase_path, class: "footer-link" %></p>
         <% elsif current_admin %>
           <p class="text-muted"><%= link_to "ユーザー一覧", admins_users_path, class: "footer-link" %> <%= link_to "依頼一覧", admins_requests_path, class: "footer-link" %>  <%= link_to "チケット一覧", admins_tickets_path, class: "footer-link" %> <%= link_to "通報一覧", admins_reports_path, class: "footer-link" %></p>
         <% else %>
-          <p class="text-muted"><%= link_to "M I N S U K E について", about_path, class: "footer-link" %> <%= link_to "ログイン", new_user_session_path, class: "footer-link" %> <%= link_to "ユーザー登録", new_user_registration_path, class: "footer-link" %> <%= link_to "管理者ログイン", new_admin_session_path, class: "footer-link" %></p>
+          <p class="text-muted"><%= link_to " 利用方法", about_path, class: "footer-link" %> <%= link_to "ログイン", new_user_session_path, class: "footer-link" %> <%= link_to "ユーザー登録", new_user_registration_path, class: "footer-link" %> <%= link_to "管理者ログイン", new_admin_session_path, class: "footer-link" %></p>
         <% end %>
       </div>
     </footer>

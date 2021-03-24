@@ -1,15 +1,11 @@
 <% set_meta_tags title: '助っ人依頼一覧', description: '多くの人々が助っ人を必要としています。' %>
-<div class="container-fluid">
+<div class="container">
 	<ol class="breadcrumb">
 	    <%= render_breadcrumbs :tag => :li, :separator => " > " %>
 	</ol>
 	<div class="row">
-		<%= render 'layouts/profile', user: current_user %>
-		<div class="col-12 col-sm-12 col-md-8">
+		<div class="col-12 col-sm-12 col-md-8 requests-box">
 			<div class="row">
-				<h3 class="col-12 col-md-12" style=" margin-bottom: 15px;">
-					依頼一覧
-				</h3>
 				<div class="col-6">" <%= params[:search] %> "の検索結果</div>
 				<div class="search-form col-6">
 					<%= form_tag(users_requests_path,:method => 'get') do %>
@@ -24,8 +20,8 @@
 				<% @requests.each do |request| %>
 					<div class="req-box col-12 col-lg-6">
 						<div class="req-img">
-							<%= attachment_image_tag request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '130x100' %>
-							<p>依頼者 : <%= link_to request.user.name, users_user_path(request.user), class: "link" %></p>
+							<%= attachment_image_tag request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '100x70', class: "thumbnail" %>
+							<p>依頼者 : <%= link_to request.user.name, users_user_path(request.user) %></p>
 						</div>
 						<div class="req-text">
 							<p class="title">
@@ -34,15 +30,16 @@
 								<% else %>
 									<span class="badge badge-danger">終了</span>
 								<% end %>
-								<%= link_to request.title, users_request_path(request), class: "link" %>
+								<%= link_to request.title, users_request_path(request) %>
 							</p>
 							<p class="content"><%= request.content %></p>
-							<p class="req-info"><%= request.created_at %><br>助っ人登録数 : <%= request.participants.count %>/<%= request.capacity %></p>
+							<p class="req-info">助っ人登録数 : <%= request.participants.count %>/<%= request.capacity %></p>
 						</div>
 					</div>
 				<% end %>
 				<%= paginate @requests %>
 			</div>
 		</div>
+		<%= render 'layouts/profile', user: current_user %>
 	</div>
 </div>

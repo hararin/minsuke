@@ -1,80 +1,76 @@
-<div class="container-fluid">
+<div class="container">
 	<ol class="breadcrumb">
 	    <%= render_breadcrumbs :tag => :li, :separator => " > " %>
 	</ol>
-	<h3 class="col-12 col-sm-12 col-md-8 offset-md-2">依頼作成</h3>
-	<% if flash[:error] %>
-		<div class="error-message">
-			<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
-		</div>
-	<% end %>
 	<div class="row">
-	    <div class="col-12 col-sm-12 col-md-8 offset-md-2">
-	    	<%= render 'layouts/error_messages', model: @request %>
-	    </div>
-	</div>
-	<div class="row">
-		<div class="col-12 col-sm-12 col-md-8 offset-md-2 request-form">
+		<div class="col-12 col-md-8 form-box">
+			<h2>依頼作成</h2>
+			<% if flash[:error] %>
+				<div class="error-message">
+					<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
+				</div>
+			<% end %>
+			<%= render 'layouts/error_messages', model: @request %>
 			<%= form_with model: @request, local: true, url: users_requests_path, method: :post, class: "form-horizontal" do |f| %>
 				<div class="form-group row">
-					<%= f.label :"", class: "col-4 col-form-label" do %>
+					<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
 						タイトル <span class="badge badge-danger">必須</span>
 					<% end %>
-					<div class="col-8">
-						<%= f.text_field :title, class: "form-control" %>
+					<div class="col-12 col-sm-8">
+						<%= f.text_field :title, class: "form-control form" %>
 					</div>
 				</div>
 				<div class="form-group row">
-					<%= f.label :"詳細", class: "col-4 col-form-label" %>
-					<div class="col-8">
-						<%= f.text_area :content, class: "form-control" %>
+					<%= f.label :"詳細", class: "col-12 col-sm-4 col-form-label" %>
+					<div class="col-12 col-sm-8">
+						<%= f.text_area :content, class: "form-control form" %>
 					</div>
 				</div>
 				<div class="form-group row">
-					<%= f.label :"", class: "col-4 col-form-label" do %>
+					<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
 						日時 <span class="badge badge-danger">必須</span>
 					<% end %>
-					<div class="input-group col-8" data-target-input="nearest">
-						<%= f.text_field :datetime, id: "datetime",class: "form-control datepicker", data: { target: '#datetime'} %>
+					<div class="input-group col-12 col-sm-8" data-target-input="nearest">
+						<%= f.text_field :datetime, id: "datetime",class: "form-control form datepicker", data: { target: '#datetime'} %>
 						<div class="input-group-append" data-target="#datetime" data-toggle="datetimepicker">
 				        	<div class="input-group-text"><i class="fa fa-calendar"></i></div>
 				   		</div>
 					</div>
 				</div>
 			    <div class="form-group row">
-			    	<%= f.label :"", class: "col-4 col-form-label" do %>
+			    	<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
 			    		住所 <span class="badge badge-danger">必須</span>
 			    	<% end %>
-				    <div class="col-8">
-						<%= f.text_field :address, class: "form-control" %>
+				    <div class="col-12 col-sm-8">
+						<%= f.text_field :address, class: "form-control form" %>
 					</div>
 			    </div>
 			    <div class="form-group row">
-			    	<%= f.label :"", class: "col-4 col-form-label" do %>
+			    	<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
 			    		募集人数 <span class="badge badge-danger">必須</span>
 			    	<% end %>
-				    <div class="col-6" style="text-align: left;">
+				    <div class="col-12 col-sm-8" style="text-align: left;">
 				    	<% if current_user.ticket == 0 %>
 				    		<p>チケットが不足しています</p>
 				    	<% else %>
-				    		<%= f.select :capacity, options_for_select((1..current_user.ticket).to_a), class: "form-control" %>
+				    		<%= f.select :capacity, options_for_select((1..current_user.ticket).to_a), class: "form-control form" %>
 				    	<% end %>
 					</div>
 			    </div>
 				<div class="form-group row">
-					<%= f.label :"", class: "col-4 col-form-label" do %>
-						募集締切日時 <span class="badge badge-danger">必須</span>
+					<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
+						募集締切 <span class="badge badge-danger">必須</span>
 					<% end %>
-					<div class="input-group col-8" data-target-input="nearest">
-						<%= f.text_field :deadline, id: "deadline",class: "form-control datepicker", data: { target: '#deadline'} %>
+					<div class="input-group col-12 col-sm-8" data-target-input="nearest">
+						<%= f.text_field :deadline, id: "deadline",class: "form-control form datepicker", data: { target: '#deadline'} %>
 						<div class="input-group-append" data-target="#deadline" data-toggle="datetimepicker">
 				        	<div class="input-group-text"><i class="fa fa-calendar"></i></div>
 				   		</div>
 					</div>
 				</div>
 			    <div class="form-group row">
-			    	<%= f.label :"サムネイル", class: "col-4 col-form-label" %>
-				    <div class="col-8">
+			    	<%= f.label :"サムネイル", class: "col-12 col-sm-4 col-form-label" %>
+				    <div class="col-12 col-sm-8">
 						<%= f.attachment_field :image %>
 					</div>
 			    </div>
@@ -86,6 +82,7 @@
 				<p>・依頼の際には、募集人数分のチケットが消費されます。<br>・募集人数に助っ人数が達しなかった場合、依頼終了後または依頼削除後に余分のチケットが返却されます。</p>
 			</div>
 		</div>
+		<%= render 'layouts/profile', user: current_user %>
 	</div>
 </div>
 
