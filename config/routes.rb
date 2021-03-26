@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :users do
+    get 'rooms/show'
+  end
+  get 'room/show'
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
   }
@@ -28,6 +32,7 @@ Rails.application.routes.draw do
     end
   	resources :requests do
   		resources :participants, only:[:create, :destroy]
+      resources :rooms, only: :show
   	end
     resources :purchases, only:[:new, :create]
   end

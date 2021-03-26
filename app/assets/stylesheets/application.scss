@@ -35,22 +35,34 @@ body {
   background-color: #EEEEEE;
 }
 
-.container-fluid {
-  padding: 30px;
-  background-color: #fff;
+.container {
+  padding-bottom: 30px;
 }
 
 .link {
   color: #000;
 }
 
-.dropdown-menu {
-  background-color: #000033;
-  text-align: center;
-  .dropdown-item {
+.navbar {
+  .dropdown-menu {
     background-color: #000033;
-    color: #fff;
-    opacity: 0.5;
+    text-align: center;
+    .dropdown-item {
+      background-color: #000033;
+      color: #fff;
+      opacity: 0.5;
+    }
+  }
+}
+
+
+.table {
+  table-layout: fixed;
+  th {
+    width: 30%;
+  }
+  td {
+    word-break: break-all;
   }
 }
 
@@ -63,6 +75,7 @@ body {
 .nav-link:hover {
   font-weight: bolder;
   font-size: 17px;
+  opacity: 1.0;
 }
 
 .pagination > li > a {

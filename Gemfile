@@ -85,6 +85,7 @@ gem 'rails-i18n'
 gem "discard"
 gem 'breadcrumbs_on_rails'
 gem 'meta-tags'
+gem 'sitemap_generator'
 
 group :production do
   gem 'pg'

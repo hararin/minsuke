@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :participants
   has_many :purchases
   has_many :reports
+  has_many :user_rooms
+  has_many :rooms, through: :user_rooms
+  has_many :posts
 
   validates :name, presence: true
   validates :ticket, presence: true

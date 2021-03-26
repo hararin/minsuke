@@ -22,6 +22,8 @@ class Users::RequestsController < ApplicationController
 		if current_user.ticket >= params[:request][:capacity].to_i
 			if @request.save
 				current_user.update(ticket: current_user.ticket - params[:request][:capacity].to_i)
+				@room = Room.create(request_id: @request.id, name: @request.title)
+				current_user.user_rooms.create(room_id: @room.id)
 				redirect_to users_requests_path
 			else
 				render :new
@@ -36,6 +38,7 @@ class Users::RequestsController < ApplicationController
 		@participants = @request.participants.all
 		@participant = Participant.find_by(request_id: @request.id,
 										   user_id: current_user.id)
+		@room = Room.find_by(request_id: @request.id)
 		add_breadcrumb 'ホーム', root_path
 		add_breadcrumb '依頼一覧', users_requests_path
 		add_breadcrumb '依頼詳細'

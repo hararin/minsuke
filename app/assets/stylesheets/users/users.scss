@@ -11,11 +11,16 @@
 .user-info {
 	margin: 30px 0;
 	text-align: center;
+	border: 1px solid #DDDDDD;
+	padding: 20px;
 	.prof-img {
 		border-radius: 50%;
 	}
 	.user-text {
 		text-align: left;
+		.introduction {
+	    	word-break: break-all;
+		}
 	}
 }
 

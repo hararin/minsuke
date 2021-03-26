@@ -17,9 +17,18 @@
             <thead>
               <tr>
                 <th>
-                  <%= @request.title %>
-                  <% if DateTime.now < @request.datetime %>
-                    <% if @request.user.id == current_user.id %>
+                  <% @participants.each do |participant| %>
+                    <% if participant.user_id == current_user.id %>
+                      <%= link_to users_request_room_path(request, @room) do %>
+                        <i class="fa fa-comments fa-lg" style="color: blue; float: left;"></i>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <% if @request.user == current_user %>
+                    <%= link_to users_request_room_path(request, @room) do %>
+                      <i class="fa fa-comments fa-lg" style="color: blue; float: left;"></i>
+                    <% end %>
+                    <% if DateTime.now < @request.datetime %>
                       <div style="float: right;">
                         <%= link_to edit_users_request_path do %>
                           <i class="fa fa-edit fa-lg" style="color: green;"></i>
@@ -39,8 +48,12 @@
           <table class="table table-bordered table-striped">
             <tbody>
               <tr>
+                <th>タイトル</th>
+                <td><%= @request.title %></td>
+              </tr>
+              <tr>
                 <th>詳細</th>
-                <td><%= @request.content %></td>
+                <td><%= safe_join(@request.content.split("\n"),tag(:br)) %></td>
               </tr>
               <tr>
                 <th>依頼者</th>
@@ -67,12 +80,12 @@
                 <td><%= @request.capacity %></td>
               </tr>
               <tr>
-                <th>募集締切日時</th>
+                <th>募集締切</th>
                 <td><%= @request.deadline %></td>
               </tr>
               <tr>
                 <th>サムネ画像</th>
-                <td><%= attachment_image_tag @request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '300x200' %></td>
+                <td><%= attachment_image_tag @request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", class: "ggg" %></td>
               </tr>
             </tbody>
           </table>
