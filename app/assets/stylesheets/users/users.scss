@@ -8,10 +8,15 @@
 	color: green;
 }
 
+h4 {
+	border-left: 5px solid #000033;
+    padding: 10px;
+    font-weight: bolder;
+}
+
 .user-info {
-	margin: 30px 0;
+	margin-bottom: 30px;
 	text-align: center;
-	border: 1px solid #DDDDDD;
 	padding: 20px;
 	.prof-img {
 		border-radius: 50%;
@@ -24,6 +29,6 @@
 	}
 }
 
-.table-title {
-	margin-top: 20px;
+.user-request {
+	padding-bottom:30px;
 }

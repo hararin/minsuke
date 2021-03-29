@@ -4,7 +4,7 @@
 
 .home {
 	text-align: center;
-	height: 800px;
+	height: 400px;
 	background-image: url(4365516_m.jpg);
 	background-position: center;
 	background-size: cover;
@@ -20,15 +20,25 @@
 		text-align: center;
 		margin-bottom: 30px;
 	}
-	.explanation {
+	.top-item1 {
+		background-color: #f8f9fa;
+		.explanation {
+			margin-bottom: 30px;
+		}
+	}
+}
+
+.top-item2, .container-fluid {
+	h2 {
+		text-align: center;
 		margin-bottom: 30px;
 	}
+	background-color: #fff;
 	.about-item {
 		text-align: center;
 		.item {
 			background-color: #fff;
 			padding: 0 30px 30px 30px;
-
 		}
 		.top-img {
 			background-position: center;
@@ -42,6 +52,9 @@
 			background-image: url(suketto.jpg);
 		}
 		.top-img3 {
+			background-image: url(chat.jpg);
+		}
+		.top-img4 {
 			background-image: url(ticket.jpg);
 		}
 	}

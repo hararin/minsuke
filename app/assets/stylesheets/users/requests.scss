@@ -20,6 +20,26 @@
   margin-bottom: 10px;
 }
 
+.request-image {
+  width: 100%;
+}
+
+.request-info {
+  h4 {
+    border-left: 5px solid #000033;
+    background-color: #f8f9fa;
+    padding: 10px;
+  }
+  .request-content {
+    word-break: break-all;
+  }
+}
+
+.options {
+  margin: 10px auto;
+  text-align: center;
+}
+
 .search-form {
   margin-bottom: 15px;
   text-align: right;
@@ -32,7 +52,8 @@
   position: relative;
   background-color: #fff;
   display: flex;
-  padding: 15px 0;
+  padding: 10px 0;
+  height: 150px;
   .req-img {
     .thumbnail {
       border-radius: 10px;
@@ -72,6 +93,7 @@
   }
 }
 .req-box:hover {
+  background-color: #D9E5FF;
   opacity: 0.5;
 }
 

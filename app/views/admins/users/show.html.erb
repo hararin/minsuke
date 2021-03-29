@@ -1,13 +1,7 @@
 <div class="container">
 	<div class="row">
-		<div class="col-sm-12 col-md-6">
-			<table class="table table-bordered table-title ">
-				<thead>
-					<tr>
-						<th><%= @user.name %>さんのプロフィール</th>
-					</tr>
-				</thead>
-			</table>
+		<div class="col-12">
+			<h4><%= @user.name %>さんのプロフィール</h4>
 			<table class="table table-bordered">
 				<tbody>
 					<tr>
@@ -41,14 +35,8 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="col-sm-12 col-md-6">
-			<table class="table table-bordered table-title">
-				<thead>
-					<tr>
-						<th>チケット購入履歴</th>
-					</tr>
-				</thead>
-			</table>
+		<div class="col-12">
+			<h4>チケット購入履歴</h4>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -75,14 +63,8 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-12 col-md-6">
-			<table class="table table-bordered table-title">
-				<thead>
-					<tr>
-						<th>依頼履歴</th>
-					</tr>
-				</thead>
-			</table>
+		<div class="col-12">
+			<h4>依頼履歴</h4>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -101,14 +83,8 @@
 			</table>
 			<%= paginate @requests %>
 		</div>
-		<div class="col-sm-12 col-md-6">
-			<table class="table table-bordered table-title">
-				<thead>
-					<tr>
-						<th>助っ人履歴</th>
-					</tr>
-				</thead>
-			</table>
+		<div class="col-12">
+			<h4>助っ人履歴</h4>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -131,7 +107,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-6 offset-3">
+		<div class="col-12" style="text-align: center;">
 			<% if @user.is_banned == true %>
 				<%= link_to "アカウント停止を解除する", admins_unban_path(@user), class: "btn btn-primary", method: :patch, data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当にアカウント停止を解除しますか？",
                                 cancel: "戻る",

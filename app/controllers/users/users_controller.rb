@@ -10,6 +10,7 @@ class Users::UsersController < ApplicationController
 		@requests.each do |request|
 			request.ticket_return(request)
 		end
+		@purchases = current_user.purchases.page(params[:page]).per(5)
 		add_breadcrumb "ホーム" , root_path
 		add_breadcrumb "ユーザー詳細" , users_user_path(@user)
 	end

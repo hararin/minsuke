@@ -6,7 +6,6 @@ class Users::PurchasesController < ApplicationController
 	def new
 		@tickets = Ticket.all
 		@purchase = Purchase.new
-		@purchases = current_user.purchases.page(params[:page]).per(5)
 		add_breadcrumb "ホーム" , root_path
 		add_breadcrumb 'マイページ', users_user_path(current_user)
 		add_breadcrumb 'チケット購入'

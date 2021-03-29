@@ -1,7 +1,30 @@
-<p><%= "ルーム名：#{@room.name}" %></p>
-
-<input type="text" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>">
-
-<div id="posts">
-  <%= render "post", collection: @posts %>
+<ol class="breadcrumb">
+	<%= render_breadcrumbs :tag => :li, :separator => " > " %>
+</ol>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-8 form-box">
+			<div class="row">
+				<div class="col-12">
+					<h2>チャット</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12" id="posts">
+					<%= render "post", collection: @posts %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-md-8" style="text-align: right;">
+					<input type="text" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>">
+				</div>
+			</div>
+		</div>
+		<%= render 'layouts/profile', user: current_user %>
+	</div>
 </div>
+
+
+
+
+

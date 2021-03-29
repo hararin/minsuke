@@ -1,13 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-7 col-lg-6 offset-lg-1">
-      <table class="table table-bordered table-title">
-        <thead>
-          <tr>
-            <th>依頼詳細</th>
-          </tr>
-        </thead>
-      </table>
+    <div class="col-12">
+      <h4>依頼詳細</h4>
       <table class="table table-bordered">
         <tbody>
           <tr>
@@ -49,14 +43,8 @@
         </tbody>
       </table>
     </div>
-    <div class="col-sm-12 col-md-5 col-lg-4">
-      <table class="table table-bordered table-title">
-        <thead>
-          <tr>
-            <th>助っ人一覧</th>
-          </tr>
-        </thead>
-      </table>
+    <div class="col-12">
+      <h4>助っ人一覧</h4>
       <% if @request.participants.exists? == false %>
         <table class="table table-bordered">
           <tbody>
