@@ -1,7 +1,7 @@
+<ol class="breadcrumb">
+	<%= render_breadcrumbs :tag => :li, :separator => " > " %>
+</ol>
 <div class="container">
-	<ol class="breadcrumb">
-	    <%= render_breadcrumbs :tag => :li, :separator => " > " %>
-	</ol>
 	<div class="row">
 		<% if flash[:notice] %>
 			<div class="col-12 notice-message">
@@ -12,91 +12,129 @@
 				<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
 			</div>
 		<% end %>
-		<div class="col-12 col-md-8 user-info">
-			<div class="row">
-				<div class="col-12 col-sm-3">
-					<%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', class: "prof-img" %>
+		<h4 class="col-12">プロフィール</h4>
+		<div class="col-12 col-md-10">
+			<div class="row user-info">
+				<div class="col-3 col-sm-3">
+					<%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', class: "prof-img", fallback: "1560031.jpg", size:'100x100' %>
 				</div>
 				<div class="col-12 col-sm-9 user-text">
 					<h5>
+						<strong>
 						<%= @user.name %>
 						<% if @user.id == current_user.id %>
-							<i class="fa fa-ticket"></i>x<%= @user.ticket %>
+							<i class="fa fa-ticket fa-lg" style="color: orange;"></i>x<%= @user.ticket %>
 							<%= link_to edit_users_user_path(@user) do %>
-								<i class="fa fa-edit fa-lg" style="color: green;"></i>
+								<button class="btn btn-success">編集する<i class="fa fa-edit fa-lg"></i></button>
 							<% end %>
 						<% else %>
 							<%= link_to new_users_user_report_path(@user) do %>
-								<i class="fa fa-bullhorn fa-lg" style="color: red;"></i>
+								<button class="btn btn-danger">通報する<i class="fa fa-bullhorn"></button></i>
 							<% end %>
-						<% end %>
+						<% end %></strong>
 					</h5>
-					<p><%= @user.introduction %></p>
+					<p class="introduction"><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-12 col-lg-6">
-			<table class="table table-bordered table-title">
-				<thead>
-					<tr>
-						<th>依頼履歴</th>
-					</tr>
-				</thead>
-			</table>
-			<% @requests.each do |request| %>
-				<div class="req-box col-12">
-					<div class="req-img">
-						<%= attachment_image_tag request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '130x100' %>
-						<p>依頼者 : <%= link_to request.user.name, users_user_path(request.user), class: "link" %></p>
+</div>
+<div style="background-color: #EEEEEE;">
+	<div class="container">
+		<div class="row user-request">
+			<h4 class="col-12"><%= @user.name %>さんの依頼・助っ人履歴</h4>
+			<div class="col-12 col-lg-6">
+				<% @requests.each do |request| %>
+					<% request.ticket_return(request) %>
+					<div class="req-box col-12" style="border: 1px solid #EEEEEE;">
+						<div class="req-img">
+							<%= attachment_image_tag request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '100x70', class: "thumbnail" %>
+							<p>依頼者 : <%= link_to request.user.name, users_user_path(request.user) %></p>
+						</div>
+						<div class="req-text">
+							<p class="title">
+								<%= link_to request.title, users_request_path(request) %>
+							</p>
+							<p class="content"><%= request.content %></p>
+							<p class="req-info">
+								助っ人登録数 : <%= request.participants.count %>/<%= request.capacity %>
+								<span class="badge badge-primary">依頼</span>
+								<% if DateTime.now <= request.datetime %>
+									<span class="badge badge-success">進行中</span>
+								<% else %>
+									<span class="badge badge-danger">終了</span>
+								<% end %>
+							</p>
+						</div>
 					</div>
-					<div class="req-text">
-						<p class="title">
-							<% if DateTime.now <= request.datetime %>
-								<span class="badge badge-success">進行中</span>
-							<% else %>
-								<span class="badge badge-danger">終了</span>
-							<% end %>
-							<%= link_to request.title, users_request_path(request), class: "link" %>
-						</p>
-						<p class="content"><%= request.content %></p>
-						<p class="req-info"><%= request.created_at %><br>助っ人登録数 : <%= request.participants.count %>/<%= request.capacity %></p>
+				<% end %>
+				<%= paginate @requests %>
+			</div>
+			<div class="col-12 col-lg-6">
+				<% @participants.each do |participant| %>
+					<div class="req-box col-12" style="border: 2px solid #EEEEEE;">
+						<div class="req-img">
+							<%= attachment_image_tag participant.request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '100x70', class: "thumbnail" %>
+							<p>依頼者 : <%= link_to participant.request.user.name, users_user_path(participant.request.user) %></p>
+						</div>
+						<div class="req-text">
+							<p class="title">
+								<%= link_to participant.request.title, users_request_path(participant.request) %>
+							</p>
+							<p class="content"><%= participant.request.content %></p>
+							<p class="req-info">
+								助っ人登録数 : <%= participant.request.participants.count %>/<%= participant.request.capacity %>
+								<span class="badge badge-primary">助っ人</span>
+								<% if DateTime.now <= participant.request.datetime %>
+									<span class="badge badge-success">進行中</span>
+								<% else %>
+									<span class="badge badge-danger">終了</span>
+								<% end %>
+							</p>
+						</div>
 					</div>
-				</div>
-			<% end %>
-			<%= paginate @requests %>
-		</div>
-		<div class="col-12 col-lg-6">
-			<table class="table table-bordered table-title">
-				<thead>
-					<tr>
-						<th>助っ人履歴</th>
-					</tr>
-				</thead>
-			</table>
-			<% @participants.each do |participant| %>
-				<div class="req-box col-12">
-					<div class="req-img">
-						<%= attachment_image_tag participant.request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '130x100' %>
-						<p>依頼者 : <%= link_to participant.request.user.name, users_user_path(participant.request.user), class: "link" %></p>
-					</div>
-					<div class="req-text">
-						<p class="title">
-							<% if DateTime.now <= participant.request.datetime %>
-								<span class="badge badge-success">進行中</span>
-							<% else %>
-								<span class="badge badge-danger">終了</span>
-							<% end %>
-							<%= link_to participant.request.title, users_request_path(participant.request), class: "link" %>
-						</p>
-						<p class="content"><%= participant.request.content %></p>
-						<p class="req-info"><%= participant.request.created_at %><br>助っ人登録数 : <%= participant.request.participants.count %>/<%= participant.request.capacity %></p>
-					</div>
-				</div>
-			<% end %>
-			<%= paginate @participants %>
+				<% end %>
+				<%= paginate @participants %>
+			</div>
 		</div>
 	</div>
 </div>
+
+<% if @user.id == current_user.id %>
+	<div class="container">
+		<div class="row">
+			<h4 class="col-12"><%= @user.name %>さんのチケット購入履歴</h4>
+			<% @purchases.each do |purchase| %>
+				<table class="table table-bordered table-title">
+					<thead>
+						<tr>
+							<th><%= purchase.created_at %></th>
+						</tr>
+					</thead>
+				</table>
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th>チケット</th>
+							<td><%= purchase.ticket.name %></td>
+						</tr>
+						<tr>
+							<th>購入数</th>
+							<td><%= purchase.quantity %></td>
+						</tr>
+						<tr>
+							<th>請求</th>
+							<td><%= purchase.charge %></td>
+						</tr>
+						<tr>
+							<th>支払方法</th>
+							<td><%= purchase.payment_method %></td>
+						</tr>
+					</tbody>
+				</table>
+			<% end %>
+			<%= paginate @purchases %>
+		</div>
+	</div>
+<% end %>
 
