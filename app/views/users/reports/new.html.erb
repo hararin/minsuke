@@ -1,15 +1,11 @@
+<ol class="breadcrumb">
+	<%= render_breadcrumbs :tag => :li, :separator => " > " %>
+</ol>
 <div class="container">
-	<ol class="breadcrumb">
-	    <%= render_breadcrumbs :tag => :li, :separator => " > " %>
-	</ol>
 	<div class="row">
-		<div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+		<div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 form-box">
+			<h2>通報</h2>
 			<%= render 'layouts/error_messages', model: @report %>
-			<h3>通報</h3>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 report-form">
 			<%= form_with model: @report, local: true, url: users_user_reports_path(@respondent), method: :post do |f| %>
 				<div class="form-group row">
 					<%= f.label :"通報するユーザー", class: "col-4 col-form-label" %>

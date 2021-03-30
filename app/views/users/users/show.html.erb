@@ -23,9 +23,9 @@
 						<strong>
 						<%= @user.name %>
 						<% if @user.id == current_user.id %>
-							<i class="fa fa-ticket"></i>x<%= @user.ticket %>
+							<i class="fa fa-ticket fa-lg" style="color: orange;"></i>x<%= @user.ticket %>
 							<%= link_to edit_users_user_path(@user) do %>
-								<button class="btn btn-success">編集する<i class="fa fa-edit"></i></button>
+								<button class="btn btn-success">編集する<i class="fa fa-edit fa-lg"></i></button>
 							<% end %>
 						<% else %>
 							<%= link_to new_users_user_report_path(@user) do %>
