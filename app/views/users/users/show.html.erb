@@ -33,7 +33,9 @@
 							<% end %>
 						<% end %></strong>
 					</h5>
-					<p class="introduction"><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></p>
+					<% if not @user.introduction.blank? %>
+						<p class="introduction"><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></p>
+					<% end %>
 				</div>
 			</div>
 		</div>
