@@ -1,16 +1,32 @@
 <div class="col-10 offset-1 col-sm-12 offset-sm-0 col-md-3 offset-md-1">
 	<div class="row">
 		<div class="col-12 profile">
+			<p class="greeting">こんにちは！！</p>
 			<p><%= attachment_image_tag user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '100x100', class: "prof-img" %></p>
-			<p>こんにちは<br>
-				<i class="fa fa-user"></i> <%= user.name %>
+			<i class="fa fa-user"></i> <%= user.name %>
 				さん
-			</p>
-			<p>保有チケット<br><i class="fa fa-ticket"></i> x <%= user.ticket %></p>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col">
+		<div class="col-12 profile">
+			<div>
+				<strong>保有チケット</strong><br><i class="fa fa-ticket"></i> x <%= user.ticket %>
+			</div>
+			<div>
+				<%= link_to "チケット購入履歴", users_purchases_path, class: "btn btn-light" %>
+			</div>
+			<hr class="my-4">
+			<div>
+				<strong>進行中の依頼</strong><br><%= requests.count %>件
+			</div>
+			<div>
+				<%= link_to "依頼履歴", users_user_request_histories_path(user), class: "btn btn-light" %>
+			</div>
+			<hr class="my-4">
+			<div>
+				<strong>進行中の助っ人</strong><br><%= participants.count %>件
+			</div>
+			<div>
+				<%= link_to "助っ人履歴", users_user_participant_histories_path(user), class: "btn btn-light" %>
+			</div>
 		</div>
 	</div>
 </div>

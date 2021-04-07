@@ -2,15 +2,15 @@ class Users::UsersController < ApplicationController
 
 	before_action :authenticate_user!
 	before_action :is_banned, only:[:edit, :update]
+	before_action :set_progress_requests
+	before_action :set_progress_participants
 
 	def show
 		@user = User.find(params[:id])
-		@participants = @user.participants.page(params[:page]).per(5)
-		@requests = @user.requests.page(params[:page]).per(5)
+		@requests = current_user.requests.all
 		@requests.each do |request|
 			request.ticket_return(request)
 		end
-		@purchases = current_user.purchases.page(params[:page]).per(5)
 		add_breadcrumb "ホーム" , root_path
 		add_breadcrumb "ユーザー詳細" , users_user_path(@user)
 	end

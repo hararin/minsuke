@@ -29,12 +29,14 @@ Rails.application.routes.draw do
     patch '/users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
   	resources :users, except:[:new, :create] do
       resources :reports, only:[:new, :create]
+      resources :request_histories, only: :index
+      resources :participant_histories, only: :index
     end
   	resources :requests do
   		resources :participants, only:[:create, :destroy]
       resources :rooms, only: :show
   	end
-    resources :purchases, only:[:new, :create]
+    resources :purchases, only:[:index, :new, :create]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

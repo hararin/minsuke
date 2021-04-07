@@ -1,0 +1,2 @@
+module Users::ParticipantHistoriesHelper
+end

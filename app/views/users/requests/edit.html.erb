@@ -82,7 +82,7 @@
 				<p>募集人数を変更した場合、変更前と変更後の差分のチケットが消費または返還されます。</p>
 			</div>
 		</div>
-		<%= render 'layouts/profile', user: current_user %>
+		<%= render 'layouts/profile', user: current_user, requests: @progress_requests, participants: @progress_participants %>
 	</div>
 </div>
 <script type="text/javascript">

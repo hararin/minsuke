@@ -125,6 +125,10 @@ h3 {
     padding: 5px;
     border-bottom: 1px solid #DDDDDD;
   }
+  h4 {
+    background-color: #DDDDDD;
+    font-weight: bold;
+  }
 }
 
 
@@ -135,6 +139,9 @@ h3 {
   border: 1px solid #DDDDDD;
   margin-top: 10px;
   margin-bottom: 10px;
+  .greeting {
+    font-weight: bold;
+  }
   .prof-img {
     border-radius: 50%;
   }

@@ -1,0 +1,38 @@
+<ol class="breadcrumb">
+  <%= render_breadcrumbs :tag => :li, :separator => " > " %>
+</ol>
+<div class="container">
+  <div class="row">
+    <h4 class="col-12"><%= current_user.name %>さんのチケット購入履歴</h4>
+    <% @purchases.each do |purchase| %>
+      <table class="table table-bordered table-title">
+        <thead>
+          <tr>
+            <th><%= purchase.created_at %></th>
+          </tr>
+        </thead>
+      </table>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>チケット</th>
+            <td><%= purchase.ticket.name %></td>
+          </tr>
+          <tr>
+            <th>購入数</th>
+            <td><%= purchase.quantity %></td>
+          </tr>
+          <tr>
+            <th>請求</th>
+            <td><%= purchase.charge %></td>
+          </tr>
+          <tr>
+            <th>支払方法</th>
+            <td><%= purchase.payment_method %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+    <%= paginate @purchases %>
+  </div>
+</div>

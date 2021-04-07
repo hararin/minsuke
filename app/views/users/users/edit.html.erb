@@ -39,6 +39,6 @@
                                 commit: '退会する' } %>
       </div>
 		</div>
-    <%= render 'layouts/profile', user: current_user %>
+    <%= render 'layouts/profile', user: current_user, requests: @progress_requests, participants: @progress_participants %>
 	</div>
 </div>

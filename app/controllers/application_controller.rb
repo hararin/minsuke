@@ -8,6 +8,14 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def set_progress_requests
+		@progress_requests = current_user.requests.all.select { |request| request.datetime > DateTime.now }
+	end
+
+	def set_progress_participants
+		@progress_participants = current_user.participants.all.select { |participant| participant.request.datetime > DateTime.now }
+	end
+
 	def any_requests_or_participants?(user)
 	    @requests = user.requests.all
 	    @req_in_progress = []

@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <h4 class="col-12"><%= @user.name %>さんの進行中の助っ人</h4>
+      <% @participants.each do |participant| %>
+        <% if participant.request.datetime > DateTime.now %>
+          <%= render "participant_box", participant: participant %>
+        <% end %>
+      <% end %>
+  </div>
+  <div class="row">
+    <h4 class="col-12"><%= @user.name %>さんの終了した依頼</h4>
+      <% @participants.each do |participant| %>
+        <% if participant.request.datetime <= DateTime.now %>
+          <%= render "participant_box", participant: participant %>
+        <% end %>
+      <% end %>
+  </div>
+</div>

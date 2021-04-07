@@ -82,7 +82,7 @@
 				<p>・依頼の際には、募集人数分のチケットが消費されます。<br>・募集人数に助っ人数が達しなかった場合、依頼終了後または依頼削除後に余分のチケットが返却されます。</p>
 			</div>
 		</div>
-		<%= render 'layouts/profile', user: current_user %>
+		<%= render 'layouts/profile', user: current_user, requests: @progress_requests, participants: @progress_participants %>
 	</div>
 </div>
 

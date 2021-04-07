@@ -2,6 +2,8 @@ class Users::ReportsController < ApplicationController
 
 	before_action :authenticate_user!
 	before_action :is_banned
+  before_action :set_progress_requests
+  before_action :set_progress_participants
 
 	def new
 		@report = Report.new

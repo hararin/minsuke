@@ -3,7 +3,7 @@
 </ol>
 <div class="container">
 	<div class="row">
-		<div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 form-box">
+		<div class="col-12 col-md-8 form-box">
 			<h2>通報</h2>
 			<%= render 'layouts/error_messages', model: @report %>
 			<%= form_with model: @report, local: true, url: users_user_reports_path(@respondent), method: :post do |f| %>
@@ -29,5 +29,6 @@
 				<p>・通報理由を必ず入力してください。<br>・通報後は取り消すことができません。</p>
 			</div>
 		</div>
+		<%= render 'layouts/profile', user: current_user, requests: @progress_requests, participants: @progress_participants %>
 	</div>
 </div>

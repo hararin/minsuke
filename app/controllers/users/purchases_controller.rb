@@ -2,6 +2,12 @@ class Users::PurchasesController < ApplicationController
 
 	before_action :authenticate_user!
 	before_action :is_banned, only: :create
+  before_action :set_progress_requests
+  before_action :set_progress_participants
+
+	def index
+		@purchases = current_user.purchases.page(params[:page]).per(10)
+	end
 
 	def new
 		@tickets = Ticket.all

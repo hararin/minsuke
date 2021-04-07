@@ -1,0 +1,16 @@
+<div class="req-box col-12 col-lg-6 " style="border: 1px solid #EEEEEE;">
+  <div class="req-img">
+    <%= attachment_image_tag participant.request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '100x70', class: "thumbnail" %>
+    <p>依頼者 : <%= link_to participant.request.user.name, users_user_path(participant.request.user) %></p>
+  </div>
+  <div class="req-text">
+    <p class="title">
+      <%= link_to participant.request.title, users_request_path(participant.request) %>
+    </p>
+    <p class="content"><%= participant.request.content %></p>
+    <p class="req-info">
+      助っ人登録数 : <%= participant.request.participants.count %>/<%= participant.request.capacity %>
+      <span class="badge badge-success">進行中</span>
+    </p>
+  </div>
+</div>
