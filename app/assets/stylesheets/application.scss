@@ -62,7 +62,8 @@ body {
 
 .breadcrumb {
   color: #fff;
-  background-color: #000033;
+  font-weight: bold;
+  background-color: green;
   border-radius: 0;
 }
 
@@ -142,8 +143,17 @@ h3 {
   .greeting {
     font-weight: bold;
   }
+  .login_user_name {
+    color: green;
+    font-weight: bold;
+  }
   .prof-img {
     border-radius: 50%;
+    border: 2px solid black;
+  }
+  .count {
+    font-weight: bold;
+    color: red;
   }
 }
 

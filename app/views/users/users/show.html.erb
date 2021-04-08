@@ -12,32 +12,39 @@
 				<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
 			</div>
 		<% end %>
-		<h4 class="col-12">プロフィール</h4>
-		<div class="col-12 col-md-10">
+		<div class="col-12 col-md-8 form-box">
 			<div class="row user-info">
-				<div class="col-3 col-sm-3">
+				<div class="col-4">
 					<%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', class: "prof-img", fallback: "1560031.jpg", size:'100x100' %>
 				</div>
-				<div class="col-12 col-sm-9 user-text">
-					<h5>
-						<strong>
-						<%= @user.name %>
-						<% if @user.id == current_user.id %>
-							<i class="fa fa-ticket fa-lg" style="color: orange;"></i>x<%= @user.ticket %>
+				<div class="col-8">
+					<h1 style="line-height: 100px;"><strong><%= @user.name %></strong></h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-10 offset-1 user-text">
+					<% if not @user.introduction.blank? %>
+					  <p><strong>自己紹介</strong></p>
+						<p class="introduction"><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></p>
+					<% end %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-10 offset-1">
+					<% if @user.id == current_user.id %>
 							<%= link_to edit_users_user_path(@user) do %>
 								<button class="btn btn-success">編集する<i class="fa fa-edit fa-lg"></i></button>
 							<% end %>
 						<% else %>
 							<%= link_to new_users_user_report_path(@user) do %>
-								<button class="btn btn-danger">通報する<i class="fa fa-bullhorn"></button></i>
+								<button class="btn btn-danger">通報する <i class="fa fa-bullhorn"></button></i>
 							<% end %>
-						<% end %></strong>
-					</h5>
-					<% if not @user.introduction.blank? %>
-						<p class="introduction"><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></p>
-					<% end %>
+							<%= link_to "依頼履歴", users_user_request_histories_path(@user), class: "btn btn-outline-info" %>
+							<%= link_to "助っ人履歴", users_user_participant_histories_path(@user), class: "btn btn-outline-info" %>
+						<% end %>
 				</div>
 			</div>
 		</div>
+		<%= render 'layouts/profile', user: current_user, requests: @progress_requests, participants: @progress_participants %>
 	</div>
 </div>
