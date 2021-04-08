@@ -5,7 +5,7 @@ class Users::RequestHistoriesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @requests = @user.requests.page(params[:page]).per(10)
+    @requests = @user.requests.page(params[:page]).per(10).recent
   end
 
 end

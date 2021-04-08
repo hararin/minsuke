@@ -5,7 +5,7 @@ class Users::ParticipantHistoriesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @participants = @user.participants.page(params[:page]).per(10)
+    @participants = @user.participants.page(params[:page]).per(10).recent
   end
 
 end

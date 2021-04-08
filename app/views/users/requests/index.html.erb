@@ -6,7 +6,11 @@
 	<div class="row">
 		<div class="col-12 col-md-8">
 			<div class="row form-box">
-				<div class="col-6">" <span style="color: red;"><%= params[:search] %></span> "の検索結果</div>
+				<div class="col-6">
+					<% if params[:search] %>
+						" <span style="color: red;"><%= params[:search] %></span> "の検索結果
+					<% end %>
+				</div>
 				<div class="search-form col-6">
 					<%= form_tag(users_requests_path,:method => 'get') do %>
 					  <%= text_field_tag :search %>

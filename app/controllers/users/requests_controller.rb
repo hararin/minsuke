@@ -7,7 +7,7 @@ class Users::RequestsController < ApplicationController
 	before_action :cannot_change, only: [:edit, :update, :destroy]
 
 	def index
-		@requests = Request.search(params[:search]).page(params[:page]).per(10)
+		@requests = Request.search(params[:search]).page(params[:page]).per(10).recent
 		add_breadcrumb "ホーム" , root_path
 		add_breadcrumb '依頼一覧'
 	end

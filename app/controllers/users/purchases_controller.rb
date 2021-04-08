@@ -6,7 +6,7 @@ class Users::PurchasesController < ApplicationController
   before_action :set_progress_participants
 
 	def index
-		@purchases = current_user.purchases.page(params[:page]).per(10)
+		@purchases = current_user.purchases.page(params[:page]).per(10).recent
 	end
 
 	def new
