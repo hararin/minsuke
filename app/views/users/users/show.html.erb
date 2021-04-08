@@ -4,11 +4,11 @@
 <div class="container">
 	<div class="row">
 		<% if flash[:notice] %>
-			<div class="col-12 notice-message">
+			<div class="col-12 alert alert-success">
 				<%= flash[:notice] %>
 			</div>
 		<% elsif flash[:error] %>
-			<div class="col-12 error-message">
+			<div class="col-12 alert alert-danger">
 				<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
 			</div>
 		<% end %>

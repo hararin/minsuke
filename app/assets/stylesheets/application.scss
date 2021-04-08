@@ -32,6 +32,14 @@ body {
   background-color: #f8f9fa;
 }
 
+.alert-danger {
+  border: 1px solid red;
+}
+
+.alert-success {
+  border: 1px solid green;
+}
+
 .form {
   background-color: #EEEEEE;
 }
@@ -125,6 +133,7 @@ h3 {
     margin-bottom: 20px;
     padding: 5px;
     border-bottom: 1px solid #DDDDDD;
+    font-weight: bold;
   }
   h4 {
     background-color: #DDDDDD;
@@ -155,17 +164,6 @@ h3 {
     font-weight: bold;
     color: red;
   }
-}
-
-.alert {
-	ul {
-		list-style: none;
-	}
-    color:#262626;
-    background:#FFEBE8;
-    text-align: center;
-    border:2px solid #990000;
-    padding:12px; font-weight:850;
 }
 
 .header {
