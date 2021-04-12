@@ -22,9 +22,12 @@ URL(https://minsuke.herokuapp.com/)
   * ユーザー登録、ログイン(devise)
     - 退会(Discard)
   * 依頼投稿
+    - 日時選択(bootstrap4-datetime-picker-rails)
     - 画像投稿(refile)
     - 位置情報検索(geocoder)
   * 助っ人登録
+  * チャット
+    - 双方向通信
   * チケット購入
   * 通報
   * ページネーション(kaminari)
