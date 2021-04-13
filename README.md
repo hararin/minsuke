@@ -3,6 +3,18 @@
 URL(https://minsuke.herokuapp.com/)
 
 # 使用方法
+### 1 ユーザーログイン
+テストユーザーを2名分用意してあります。
+* testuser1      
+Eメール : 1@a      
+パスワード : testuser1
+* testuser2      
+Eメール : 2@a      
+パスワード : testuser2
+
+### 2 依頼投稿
+ヘッダー右部の助っ人依頼より依頼作成を選択してください。
+
 
 
 # 使用技術
