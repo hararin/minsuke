@@ -1,7 +1,7 @@
-# README
+<h1 style="text-align: center;">M I N S U K E</h1>
+<hr class="my-4">
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<p>助っ人を募集するなら</p>
 
 Things you may want to cover:
 
