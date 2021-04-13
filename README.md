@@ -41,7 +41,7 @@ Eメール : 2@a
 ###### ()内は使用したgemです。
 ### ユーザー関連
   * ユーザー認証
-    - ユーザー登録、ログイン(devise)
+    - メール認証つきユーザー登録、ログイン(devise)
     - 退会(Discard)
   * 依頼投稿
     - 日時選択(bootstrap4-datetime-picker-rails)
@@ -60,4 +60,3 @@ Eメール : 2@a
   * 管理者ログイン(devise)
   * ユーザーBAN
   * チケット作成
->>>>>>> origin/master
