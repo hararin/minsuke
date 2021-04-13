@@ -1,7 +1,5 @@
 # M I N S U K E
-
-# 概要
-人手不足に困った際に助っ人を募集できるサイトです。
+![スクリーンショット 2021-04-13 10 46 58](https://user-images.githubusercontent.com/69122070/114484751-bc413a80-9c45-11eb-8b0e-7d924fe3d3fe.png)
 URL(https://minsuke.herokuapp.com/)
 
 # 使用方法
