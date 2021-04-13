@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-<h1 style="text-align: center;">M I N S U K E</h1>
-<hr class="my-4">
-
-<p>助っ人を募集するなら</p>
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-=======
 # M I N S U K E
 ![スクリーンショット 2021-04-13 10 46 58](https://user-images.githubusercontent.com/69122070/114484751-bc413a80-9c45-11eb-8b0e-7d924fe3d3fe.png)
 URL(https://minsuke.herokuapp.com/)
