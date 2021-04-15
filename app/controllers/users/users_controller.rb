@@ -5,6 +5,7 @@ class Users::UsersController < ApplicationController
 	before_action :set_progress_requests
 	before_action :set_progress_participants
 	before_action :set_keeps
+	before_action :keeps_auto_destroy
 
 	def show
 		@user = User.find(params[:id])

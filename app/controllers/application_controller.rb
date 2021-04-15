@@ -37,6 +37,15 @@ class ApplicationController < ActionController::Base
 		@keeps = current_user.keeps.all
 	end
 
+	def keeps_auto_destroy
+		@keeps = current_user.keeps.all
+		@keeps.each do |keep|
+			if DateTime.now >= keep.request.datetime
+				keep.destroy
+			end
+		end
+	end
+
 	protected
 
 	def configure_permitted_parameters

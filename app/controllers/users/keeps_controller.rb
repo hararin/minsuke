@@ -3,6 +3,7 @@ class Users::KeepsController < ApplicationController
   before_action :authenticate_user!
   before_action :is_banned
   before_action :set_request, only: [:create, :destroy]
+  before_action :keeps_auto_destroy
 
   def index
     @keeps = current_user.keeps.all.page(params[:page]).per(10).recent

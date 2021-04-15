@@ -5,6 +5,7 @@ class Users::RequestsController < ApplicationController
 	before_action :set_progress_requests
 	before_action :set_progress_participants
 	before_action :set_keeps
+	before_action :keeps_auto_destroy
 	before_action :cannot_change, only: [:edit, :update, :destroy]
 
 	def index
