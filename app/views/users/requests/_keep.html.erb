@@ -1,0 +1,9 @@
+<% if current_user.keeps.find_by(request_id: request.id) %>
+  <%= link_to users_request_keep_path(request, @keep), method: :delete, remote: true do %>
+    <button class="btn btn-secondary" style="color: #fff;"><i class="material-icons">キープ済み</i></button>
+  <% end %>
+<% else %>
+  <%= link_to users_request_keeps_path(request), method: :post, remote: true do %>
+    <button class="btn btn-warning" style="color: #fff;"><i class="material-icons">キープする！</i></button>
+  <% end %>
+<% end %>

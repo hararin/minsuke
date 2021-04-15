@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   	resources :requests do
   		resources :participants, only:[:create, :destroy]
       resources :rooms, only: :show
+      resources :keeps, only:[:create, :destroy]
   	end
     resources :purchases, only:[:index, :new, :create]
   end

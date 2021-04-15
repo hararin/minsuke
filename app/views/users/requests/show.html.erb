@@ -53,6 +53,7 @@
             <p>この依頼は終了しました</p>
           <% else %>
             <% if @request.user.id != current_user.id %>
+              <span id="request-<%= @request.id %>"><%= render partial: "keep", locals: { request: @request} %></span>
               <% if @request.participants.exists?(user_id: current_user.id) %>
                 <%= link_to "キャンセルする", users_request_participant_path(@request, @participant), method: :delete, class: "btn btn-danger", data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に助っ人登録をキャンセルしますか？", cancel: "戻る", commit: "キャンセルする" } %>
                 <%= link_to users_request_room_path(@request, @room) do %>
