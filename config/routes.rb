@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       resources :reports, only:[:new, :create]
       resources :request_histories, only: :index
       resources :participant_histories, only: :index
+      resources :keeps, only: :index
     end
   	resources :requests do
   		resources :participants, only:[:create, :destroy]

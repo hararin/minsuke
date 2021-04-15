@@ -4,6 +4,7 @@ class Users::UsersController < ApplicationController
 	before_action :is_banned, only:[:edit, :update]
 	before_action :set_progress_requests
 	before_action :set_progress_participants
+	before_action :set_keeps
 
 	def show
 		@user = User.find(params[:id])

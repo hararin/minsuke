@@ -4,6 +4,7 @@ class Users::PurchasesController < ApplicationController
 	before_action :is_banned, only: :create
   before_action :set_progress_requests
   before_action :set_progress_participants
+  before_action :set_keeps
 
 	def index
 		@purchases = current_user.purchases.page(params[:page]).per(10).recent

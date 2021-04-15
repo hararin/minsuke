@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
 	    end
 	end
 
+	def set_keeps
+		@keeps = current_user.keeps.all
+	end
+
 	protected
 
 	def configure_permitted_parameters

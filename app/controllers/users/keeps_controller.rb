@@ -2,7 +2,11 @@ class Users::KeepsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :is_banned
-  before_action :set_request
+  before_action :set_request, only: [:create, :destroy]
+
+  def index
+    @keeps = current_user.keeps.all.page(params[:page]).per(10).recent
+  end
 
   def create
     @keep = Keep.new(user_id: current_user.id, request_id: @request.id)

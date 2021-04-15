@@ -27,6 +27,13 @@
 			<div>
 				<%= link_to "助っ人履歴", users_user_participant_histories_path(user), class: "btn btn-info" %>
 			</div>
+			<hr class="my-4">
+			<div>
+				<strong>キープ中の依頼</strong><br> 【 <span class="count"><%= keeps.count %></span>件 】
+			</div>
+			<div>
+				<%= link_to "キープリスト", users_user_keeps_path(current_user), class: "btn btn-warning", style: "color: #fff;" %>
+			</div>
 		</div>
 	</div>
 </div>

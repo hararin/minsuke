@@ -4,6 +4,7 @@ class Users::RequestsController < ApplicationController
 	before_action :is_banned, except: [:index, :show]
 	before_action :set_progress_requests
 	before_action :set_progress_participants
+	before_action :set_keeps
 	before_action :cannot_change, only: [:edit, :update, :destroy]
 
 	def index

@@ -4,6 +4,7 @@ class Users::ReportsController < ApplicationController
 	before_action :is_banned
   before_action :set_progress_requests
   before_action :set_progress_participants
+  before_action :set_keeps
 
 	def new
 		@report = Report.new
