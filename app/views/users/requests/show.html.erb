@@ -16,9 +16,7 @@
           <h2><strong><%= @request.title %></strong></h2>
           <p class="request-content"><%= safe_join(@request.content.split("\n"),tag(:br)) %></p>
         </div>
-        <div class="col-12">
-          <p><%= attachment_image_tag @request, :image, :fill, 100, 100, format: 'jpg', fallback: "1560031.jpg", size: '100x100', class: "request-img" %></p>
-        </div>
+        <p><%= attachment_image_tag @request, :image,format: 'jpg', fallback: "1560031.jpg", class: "request-img col-12" %></p>
         <div class="col-12">
           <h4>依頼者</h4>
           <p><%= link_to @request.user.name, users_user_path(@request.user) %></p>
@@ -43,7 +41,15 @@
         <div class="col-12">
           <h4>助っ人一覧</h4>
           <% @participants.each do |participant| %>
-            <p><%= link_to participant.user.name, users_user_path(participant.user) %></p>
+            <p><%= link_to participant.user.name, users_user_path(participant.user) %>
+              <% if @request.user == current_user %>
+                <% if participant.evaluations.exists? %>
+                  評価済み
+                <% else %>
+                  <%= link_to "評価する", new_users_participant_evaluation_path(participant) %>
+                <% end %>
+              <% end %>
+            </p>
           <% end %>
         </div>
       </div>

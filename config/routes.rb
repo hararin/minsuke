@@ -38,6 +38,9 @@ Rails.application.routes.draw do
       resources :rooms, only: :show
       resources :keeps, only:[:create, :destroy]
   	end
+    resources :participants do
+      resources :evaluations, only: [:new, :create]
+    end
     resources :purchases, only:[:index, :new, :create]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

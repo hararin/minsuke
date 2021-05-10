@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :rooms, through: :user_rooms
   has_many :posts
   has_many :keeps
+  has_many :evaluations
 
   validates :name, presence: true
   validates :ticket, presence: true
