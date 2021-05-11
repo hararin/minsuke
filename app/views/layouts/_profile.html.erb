@@ -11,28 +11,28 @@
 				<strong>保有チケット</strong><br>【 <i class="fa fa-ticket" style="color: orange;"></i> x <span class="count"><%= user.ticket %></span> 】
 			</div>
 			<div>
-				<%= link_to "チケット購入履歴", users_purchases_path, class: "btn btn-info" %>
+				<%= link_to "チケット購入履歴", users_purchases_path, class: "btn btn-info btn-sm" %>
 			</div>
 			<hr class="my-4">
 			<div>
 				<strong>進行中の依頼</strong><br>【 <span class="count"><%= requests.count %></span>件 】
 			</div>
 			<div>
-				<%= link_to "依頼履歴", users_user_request_histories_path(user), class: "btn btn-info" %>
+				<%= link_to "依頼履歴", users_user_request_histories_path(user), class: "btn btn-info btn-sm" %>
 			</div>
 			<hr class="my-4">
 			<div>
 				<strong>進行中の助っ人</strong><br>【 <span class="count"><%= participants.count %></span>件 】
 			</div>
 			<div>
-				<%= link_to "助っ人履歴", users_user_participant_histories_path(user), class: "btn btn-info" %>
+				<%= link_to "助っ人履歴", users_user_participant_histories_path(user), class: "btn btn-info btn-sm" %>
 			</div>
 			<hr class="my-4">
 			<div>
 				<strong>キープ中の依頼</strong><br> 【 <span class="count"><%= keeps.count %></span>件 】
 			</div>
 			<div>
-				<%= link_to "キープリスト", users_user_keeps_path(current_user), class: "btn btn-warning", style: "color: #fff;" %>
+				<%= link_to "キープリスト", users_user_keeps_path(current_user), class: "btn btn-warning btn-sm", style: "color: #fff;" %>
 			</div>
 		</div>
 	</div>

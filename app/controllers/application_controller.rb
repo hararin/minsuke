@@ -56,13 +56,13 @@ class ApplicationController < ActionController::Base
 		@participants.each do |participant|
 			if not participant.evaluation.blank?
 				@evaluation = participant.evaluation
-				if @evaluation.evaluation == 1
+				if @evaluation.evaluation == '不満'
 					@sum1 += 1
-				elsif @evaluation.evaluation == 2
+				elsif @evaluation.evaluation == 'やや不満'
 					@sum2 += 1
-				elsif @evaluation.evaluation == 3
+				elsif @evaluation.evaluation == '普通'
 					@sum3 += 1
-				elsif @evaluation.evaluation == 4
+				elsif @evaluation.evaluation == 'やや満足'
 					@sum4 += 1
 				else
 					@sum5 += 1
@@ -87,13 +87,13 @@ class ApplicationController < ActionController::Base
 			if not request.another_evaluations.blank?
 				@another_evaluations = request.another_evaluations
 				@another_evaluations.each do |another_evaluation|
-					if another_evaluation.evaluation == 1
+					if another_evaluation.evaluation == '不満'
 						@sum6 += 1
-					elsif another_evaluation.evaluation == 2
+					elsif another_evaluation.evaluation == 'やや不満'
 						@sum7 += 1
-					elsif another_evaluation.evaluation == 3
+					elsif another_evaluation.evaluation == '普通'
 						@sum8 += 1
-					elsif another_evaluation.evaluation == 4
+					elsif another_evaluation.evaluation == 'やや満足'
 						@sum9 += 1
 					else
 						@sum10 += 1

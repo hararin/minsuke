@@ -29,6 +29,14 @@ h4 {
 	  padding: 5px 10px;
 	  margin-bottom: 20px;
 	}
+	.horizontal-list {
+		overflow-x: auto;
+		white-space: nowrap;
+		-webkit-overflow-scrolling: touch;
+		.evaluation-item {
+			display: inline-block;
+		}
+	}
 }
 
 .user-request {

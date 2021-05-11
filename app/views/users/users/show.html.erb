@@ -29,7 +29,7 @@
 					  	【 自己紹介 】
 					  	<% if @user == current_user %>
 							  <%= link_to edit_users_user_path(@user) do %>
-									<button class="btn btn-success">編集する<i class="fa fa-edit fa-lg"></i></button>
+									<button class="btn btn-success btn-sm">編集する<i class="fa fa-edit fa-lg"></i></button>
 								<% end %>
 					  	<% end %>
 					  	</strong>
@@ -37,29 +37,35 @@
 						<p class="introduction"><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></p>
 					<% end %>
 				</div>
-				<div class="col-12 col-lg-10 offset-lg-1  user-text">
-					<div>
-						<p>
-							<strong>
-							【 助っ人としての評価 】
-							<% if @user != current_user %>
-								<%= link_to "助っ人履歴", users_user_participant_histories_path(@user), class: "btn btn-outline-info" %>
-							<% end %>
-							</strong>
-						</p>
-						<%= pie_chart(@chart) %>
-					</div>
-					<div>
-						<p>
-							<strong>
-							【 依頼者としての評価 】
-							<% if @user != current_user %>
-								<%= link_to "依頼履歴", users_user_request_histories_path(@user), class: "btn btn-outline-info" %>
-							<% end %>
-							</strong>
-						</p>
-						<%= pie_chart(@chart2) %>
-					</div>
+				<div class="col-12 col-lg-10 offset-lg-1 user-text">
+					<ul class="horizontal-list">
+						<li class="evaluation-item">
+							<div>
+								<p>
+									<strong>
+									【 助っ人としての評価 】
+									<% if @user != current_user %>
+										<%= link_to "助っ人履歴", users_user_participant_histories_path(@user), class: "btn btn-outline-info btn-sm" %>
+									<% end %>
+									</strong>
+								</p>
+								<%= pie_chart(@chart) %>
+							</div>
+						</li>
+						<li class="evaluation-item">
+							<div>
+								<p>
+									<strong>
+									【 依頼者としての評価 】
+									<% if @user != current_user %>
+										<%= link_to "依頼履歴", users_user_request_histories_path(@user), class: "btn btn-outline-info btn-sm" %>
+									<% end %>
+									</strong>
+								</p>
+								<%= pie_chart(@chart2) %>
+							</div>
+						</li>
+					</ul>
 				</div>
 			</div>
 			<div class="row">
