@@ -27,6 +27,8 @@
 					  <p><strong>自己紹介</strong></p>
 						<p class="introduction"><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></p>
 					<% end %>
+					<p><strong>助っ人としての評価</strong></p>
+					<%= pie_chart(@chart) %>
 				</div>
 			</div>
 			<div class="row">

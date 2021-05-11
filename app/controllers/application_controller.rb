@@ -46,6 +46,36 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def set_evaluation
+		@participants = Participant.where(user_id: @user.id)
+		@sum1 = 0
+		@sum2 = 0
+		@sum3 = 0
+		@sum4 = 0
+		@sum5 = 0
+		@participants.each do |participant|
+			if not participant.evaluation.blank?
+				@evaluation = participant.evaluation
+				if @evaluation.evaluation == 1
+					@sum1 += 1
+				elsif @evaluation.evaluation == 2
+					@sum2 += 1
+				elsif @evaluation.evaluation == 3
+					@sum3 += 1
+				elsif @evaluation.evaluation == 4
+					@sum4 += 1
+				else
+					@sum5 += 1
+				end
+			end
+		end
+		if @sum1 + @sum2 + @sum3 + @sum4 + @sum5 == 0
+			@chart = [['データなし', 1]]
+		else
+			@chart = [['不満', @sum1],['やや不満', @sum2],['普通', @sum3],['やや満足', @sum4],['満足', @sum5]]
+		end
+	end
+
 	protected
 
 	def configure_permitted_parameters

@@ -86,6 +86,8 @@ gem "discard"
 gem 'breadcrumbs_on_rails'
 gem 'meta-tags'
 gem 'sitemap_generator'
+gem "chartkick"
+gem 'chartable'
 
 group :production do
   gem 'pg'

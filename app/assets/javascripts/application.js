@@ -14,7 +14,8 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-
+//= require Chart.bundle
+//= require chartkick
 //= require popper
 //= require bootstrap
 // = require data-confirm-modal

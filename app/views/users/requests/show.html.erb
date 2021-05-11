@@ -42,9 +42,9 @@
           <h4>助っ人一覧</h4>
           <% @participants.each do |participant| %>
             <p><%= link_to participant.user.name, users_user_path(participant.user) %>
-              <% if @request.user == current_user %>
+              <% if @request.user == current_user && DateTime.now > @request.datetime %>
                 <% if participant.evaluations.exists? %>
-                  評価済み
+                  <span class="badge badge-secondary">評価済み</span>
                 <% else %>
                   <%= link_to "評価する", new_users_participant_evaluation_path(participant) %>
                 <% end %>
