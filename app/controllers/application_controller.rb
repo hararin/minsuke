@@ -76,6 +76,38 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def set_another_evaluation
+		@requests = Request.where(user_id: @user.id)
+		@sum6 = 0
+		@sum7 = 0
+		@sum8 = 0
+		@sum9 = 0
+		@sum10 = 0
+		@requests.each do |request|
+			if not request.another_evaluations.blank?
+				@another_evaluations = request.another_evaluations
+				@another_evaluations.each do |another_evaluation|
+					if another_evaluation.evaluation == 1
+						@sum6 += 1
+					elsif another_evaluation.evaluation == 2
+						@sum7 += 1
+					elsif another_evaluation.evaluation == 3
+						@sum8 += 1
+					elsif another_evaluation.evaluation == 4
+						@sum9 += 1
+					else
+						@sum10 += 1
+					end
+				end
+			end
+		end
+		if @sum6 + @sum7 + @sum8 + @sum9 + @sum10 == 0
+			@chart2 = [['データなし', 1]]
+		else
+			@chart2 = [['不満', @sum6],['やや不満', @sum7],['普通', @sum8],['やや満足', @sum9],['満足', @sum10]]
+		end
+	end
+
 	protected
 
 	def configure_permitted_parameters

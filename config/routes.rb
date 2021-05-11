@@ -37,9 +37,10 @@ Rails.application.routes.draw do
   		resources :participants, only:[:create, :destroy]
       resources :rooms, only: :show
       resources :keeps, only:[:create, :destroy]
+      resources :another_evaluations, only:[:new, :create]
   	end
     resources :participants do
-      resources :evaluations, only: [:new, :create]
+      resources :evaluations, only:[:new, :create]
     end
     resources :purchases, only:[:index, :new, :create]
   end

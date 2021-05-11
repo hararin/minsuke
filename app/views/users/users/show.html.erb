@@ -22,28 +22,54 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-10 offset-1 user-text">
+				<div class="col-12 col-lg-10 offset-lg-1 user-text">
 					<% if not @user.introduction.blank? %>
-					  <p><strong>自己紹介</strong></p>
+					  <p>
+					  	<strong>
+					  	【 自己紹介 】
+					  	<% if @user == current_user %>
+							  <%= link_to edit_users_user_path(@user) do %>
+									<button class="btn btn-success">編集する<i class="fa fa-edit fa-lg"></i></button>
+								<% end %>
+					  	<% end %>
+					  	</strong>
+						</p>
 						<p class="introduction"><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></p>
 					<% end %>
-					<p><strong>助っ人としての評価</strong></p>
-					<%= pie_chart(@chart) %>
+				</div>
+				<div class="col-12 col-lg-10 offset-lg-1  user-text">
+					<div>
+						<p>
+							<strong>
+							【 助っ人としての評価 】
+							<% if @user != current_user %>
+								<%= link_to "助っ人履歴", users_user_participant_histories_path(@user), class: "btn btn-outline-info" %>
+							<% end %>
+							</strong>
+						</p>
+						<%= pie_chart(@chart) %>
+					</div>
+					<div>
+						<p>
+							<strong>
+							【 依頼者としての評価 】
+							<% if @user != current_user %>
+								<%= link_to "依頼履歴", users_user_request_histories_path(@user), class: "btn btn-outline-info" %>
+							<% end %>
+							</strong>
+						</p>
+						<%= pie_chart(@chart2) %>
+					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-10 offset-1">
+				<div class="col-12 col-lg-10 offset-lg-1">
 					<% if @user.id == current_user.id %>
-							<%= link_to edit_users_user_path(@user) do %>
-								<button class="btn btn-success">編集する<i class="fa fa-edit fa-lg"></i></button>
-							<% end %>
-						<% else %>
-							<%= link_to new_users_user_report_path(@user) do %>
-								<button class="btn btn-danger">通報する <i class="fa fa-bullhorn"></button></i>
-							<% end %>
-							<%= link_to "依頼履歴", users_user_request_histories_path(@user), class: "btn btn-outline-info" %>
-							<%= link_to "助っ人履歴", users_user_participant_histories_path(@user), class: "btn btn-outline-info" %>
+					<% else %>
+						<%= link_to new_users_user_report_path(@user) do %>
+							<button class="btn btn-danger">通報する <i class="fa fa-bullhorn"></button></i>
 						<% end %>
+					<% end %>
 				</div>
 			</div>
 		</div>

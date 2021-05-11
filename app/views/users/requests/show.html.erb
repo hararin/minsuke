@@ -57,6 +57,13 @@
         <div class="col-12">
           <% if DateTime.now >= @request.datetime %>
             <p>この依頼は終了しました</p>
+            <% if @participants.exists?(user_id: current_user.id) %>
+              <% if @request.another_evaluations.exists?(user_id: current_user.id) %>
+                <span class="badge badge-secondary">評価済み</span>
+              <% else %>
+                <%= link_to "依頼者を評価する", new_users_request_another_evaluation_path(@request) %>
+              <% end %>
+            <% end %>
           <% else %>
             <% if @request.user.id != current_user.id %>
               <span id="request-<%= @request.id %>"><%= render partial: "keep", locals: { request: @request} %></span>

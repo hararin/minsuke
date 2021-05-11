@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :keeps
   has_many :evaluations
+  has_many :another_evaluations
 
   validates :name, presence: true
   validates :ticket, presence: true

@@ -4,6 +4,7 @@ class Request < ApplicationRecord
 	has_many :participants, dependent: :destroy
   has_one :room, dependent: :destroy
   has_many :keeps
+  has_many :another_evaluations
 
  	validates :datetime, presence: true
   	validates :address, presence: true

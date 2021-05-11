@@ -10,6 +10,7 @@ class Users::UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 		set_evaluation
+		set_another_evaluation
 		@requests = current_user.requests.all
 		@requests.each do |request|
 			request.ticket_return(request)

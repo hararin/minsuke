@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8 form-box">
+      <h2>依頼者評価</h2>
+      <%= render 'layouts/error_messages', model: @evaluation %>
+      <%= form_with model: @evaluation, local: true, url: users_request_another_evaluations_path(@request), method: :post, class: "form-horizontal" do |f| %>
+        <div class="form-group row">
+          <%= f.label :"", class: "col-4 col-form-label" do %>
+          依頼者 <span class="badge badge-danger">必須</span>
+          <% end %>
+          <div class="col-8">
+            <%= f.text_field :content, class: "form-control form", :placeholder => @request.user.name, :disabled => true %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= f.label :"", class: "col-4 col-form-label" do %>
+          評価 <span class="badge badge-danger">必須</span>
+          <% end %>
+          <div class="col-8">
+            <div>
+              <%= f.radio_button :evaluation, :不満 %>
+              <%= f.label :不満 %>
+            </div>
+            <div>
+              <%= f.radio_button :evaluation, :やや不満 %>
+              <%= f.label :やや不満 %>
+            </div>
+            <div>
+              <%= f.radio_button :evaluation, :普通 %>
+              <%= f.label :普通 %>
+            </div>
+            <div>
+              <%= f.radio_button :evaluation, :やや満足 %>
+              <%= f.label :やや満足 %>
+            </div>
+            <div>
+              <%= f.radio_button :evaluation, :満足 %>
+              <%= f.label :満足 %>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= f.label :"コメント", class: "col-12 col-sm-4 col-form-label" %>
+          <div class="col-12 col-sm-8">
+            <%= f.text_area :content, class: "form-control form" %>
+          </div>
+        </div>
+        <%= f.submit "評価する", class: "btn btn-danger", style: "width: 100%;" %>
+      <% end %>
+    </div>
+    <%= render 'layouts/profile', user: current_user, requests: @progress_requests, participants: @progress_participants, keeps: @keeps %>
+  </div>
+</div>
