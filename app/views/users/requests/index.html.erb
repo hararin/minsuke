@@ -5,43 +5,25 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12 col-md-8">
-			<div class="row form-box">
-				<div class="col-6">
+			<div class="row search-form">
+				<div class="col-12">
+					<%= form_tag(users_requests_path,:method => 'get') do %>
+					  <%= text_field_tag :search %>
+					  	<span></span>
+					  <%= button_tag :type => "submit", class: "btn btn-outline-light btn-sm" do %>
+					  	<i class="fa fa-search"></i>検索
+					 	<% end %>
+					<% end %>
+				</div>
+				<div class="col-12">
 					<% if params[:search] %>
 						" <span style="color: red;"><%= params[:search] %></span> "の検索結果
 					<% end %>
 				</div>
-				<div class="search-form col-6">
-					<%= form_tag(users_requests_path,:method => 'get') do %>
-					  <%= text_field_tag :search %>
-					  <%= button_tag :type => "submit", style: 'border-style: none;' do %>
-					  	<i class="fa fa-search"></i>
-					 	<% end %>
-					<% end %>
-				</div>
 			</div>
-			<div class="row d-flex flex-wrap">
+			<div class="row form-box">
 				<% @requests.each do |request| %>
-					<div class="req-box col-12 col-lg-6" style="border: 1px solid #DDDDDD;">
-						<div class="req-img">
-							<%= attachment_image_tag request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '100x70', class: "thumbnail" %>
-							<p>依頼者 : <%= link_to request.user.name, users_user_path(request.user) %></p>
-						</div>
-						<div class="req-text">
-							<p class="title">
-								<%= link_to request.title, users_request_path(request) %>
-							</p>
-							<p class="content"><%= request.content %></p>
-							<p class="req-info">
-								助っ人登録数 : <%= request.participants.count %>/<%= request.capacity %>
-								<% if DateTime.now <= request.datetime %>
-									<span class="badge badge-success">進行中</span>
-								<% else %>
-									<span class="badge badge-danger">終了</span>
-								<% end %>
-							</p>
-						</div>
-					</div>
+					<%= render "users/participant_histories/participant_box", request: request %>
 				<% end %>
 				<%= paginate @requests %>
 			</div>

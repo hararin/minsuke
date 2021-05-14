@@ -7,6 +7,15 @@ class Users::EvaluationsController < ApplicationController
   before_action :set_keeps
   before_action :keeps_auto_destroy
 
+  def index
+    @user = User.find(params[:user_id])
+    @participants = @user.participants.all
+    @evaluations = []
+    @participants.each do |participant|
+      @evaluations << participant.evaluation
+    end
+  end
+
   def new
     @evaluation = Evaluation.new
     @participant = Participant.find(params[:participant_id])

@@ -31,69 +31,52 @@
 }
 
 .request-img {
-  height: 200px;
-}
-
-.options {
-  margin: 10px auto;
-  text-align: center;
+  height: 250px;
+  width: 100%;
+  border-bottom: none;
 }
 
 .search-form {
+  width: 80%;
   margin-bottom: 15px;
-  text-align: right;
-  .fa-search {
-    padding: 0 5px;
-  }
+  color: #fff;
+  background-color: #000033;
+  padding: 15px 30px;
+  border-radius: 50px;
 }
 
 .req-box {
   position: relative;
+  text-decoration: none;
+  .req-badge {
+    position: absolute;
+    top: 0;
+    left: 5px;
+  }
   background-color: #fff;
-  display: flex;
   padding: 10px 0;
-  height: 150px;
   .req-img {
     .thumbnail {
-      border-radius: 10px;
-    }
-    p {
-      font-size: 12px;
-      margin-top: 10px;
-      margin-bottom: 0;
+      width: 100%;
+      height: 150px;
     }
   }
   .req-text {
-    margin-left: 20px;
-    .title {
-      margin-bottom: 5px;
+    p {
+      margin: 5px 0 0 0;
+      padding: 0;
+      text-decoration: none;
+      color: #000;
       word-break: break-all;
       display: -webkit-box;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .content {
-      margin-bottom: 0;
-      font-size: 12px;
-      word-break: break-all;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .req-info {
-      position: absolute;
-      bottom: 0;
-      right: 10px;
-      font-size: 12px;
-      color: gray;
+    .title {
+      font-weight: bold;
     }
   }
-}
-.req-box:hover {
-  background-color: #D9E5FF;
-  opacity: 0.5;
 }
 
 .fa-trash, .fa-edit {
@@ -139,6 +122,53 @@
   .btn-danger {
     background-color: #f97773;
     border-color: #f97773;
+  }
+}
+
+.request-about {
+  background-color: #fff;
+  border: 1px solid #000033;
+  margin-bottom: 10px;
+  h4 {
+    background-color: #000033;
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+  }
+  div {
+    padding: 10px;
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.request-suketto-box {
+  border: 1px solid #000033;
+  margin-bottom: 20px;
+  padding: 0;
+  .request-suketto-title {
+    display: flex;
+    background-color: #000033;
+    color: #fff;
+    h4 {
+      padding: 10px;
+      margin: 0;
+    }
+    p {
+      margin: 10px 10px 10px auto;
+    }
+  }
+  .request-suketto {
+    display: flex;
+    p {
+      margin: 0;
+      padding: 5px 10px;
+    }
+    border-top: 1px solid #000033;
+    .eval-btn {
+      margin-left: auto;
+    }
   }
 }
 

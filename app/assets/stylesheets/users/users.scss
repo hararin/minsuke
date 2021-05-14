@@ -2,21 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h4 {
-    border-left: 5px solid #000033;
-    padding: 10px;
-}
-
 .user-info {
+	background-color: #000033;
+	h1 {
+		color: #fff;
+		margin: 0;
+		padding: 0;
+	}
 	text-align: center;
 	padding: 20px;
-	h1 {
-		text-align: left;
-	}
 	.prof-img {
 		border-radius: 50%;
-		border: 2px solid #000;
+		border: 2px solid #fff;
 	}
+	border: 1px solid #000033;
 }
 
 .user-text {
@@ -27,7 +26,7 @@ h4 {
 	.introduction {
 	  word-break: break-all;
 	  padding: 5px 10px;
-	  margin-bottom: 20px;
+	  color: #fff;
 	}
 	.horizontal-list {
 		overflow-x: auto;
@@ -37,6 +36,12 @@ h4 {
 			display: inline-block;
 		}
 	}
+}
+
+.eval-chart {
+	padding: 10px 0;
+	background-color: #fff;
+	border: 1px solid #000033;
 }
 
 .user-request {

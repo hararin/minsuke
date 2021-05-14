@@ -1,36 +1,38 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3 form-box">
-      <h2>ログイン</h2>
-      <% if flash[:error] %>
-        <div class="row">
-          <div class="col-12 alert alert-warning">
-            <%= flash[:error] %>
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3">
+      <h2 class="page-title">ログイン</h2>
+      <div class="form-box">
+        <% if flash[:error] %>
+          <div class="row">
+            <div class="col-12 alert alert-warning">
+              <%= flash[:error] %>
+            </div>
           </div>
-        </div>
-      <% end %>
-      <%= form_for(resource, as: resource_name, local: true, url: session_path(resource_name)) do |f| %>
-        <div class="form-group row">
-          <%= f.label :"Eメール", class: "col-12 col-sm-3 col-form-label" %>
-          <div class="col-12 col-sm-9">
-            <%= f.text_field :email, class: "form-control form" %>
+        <% end %>
+        <%= form_for(resource, as: resource_name, local: true, url: session_path(resource_name)) do |f| %>
+          <div class="form-group row">
+            <%= f.label :"Eメール", class: "col-12 col-sm-3 col-form-label" %>
+            <div class="col-12 col-sm-9">
+              <%= f.text_field :email, class: "form-control form" %>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <%= f.label :"パスワード", class: "col-12 col-sm-3 col-form-label" %>
-          <div class="col-12 col-sm-9">
-            <%= f.password_field :password, class: "form-control form",autocomplete: "new-password" %>
+          <div class="form-group row">
+            <%= f.label :"パスワード", class: "col-12 col-sm-3 col-form-label" %>
+            <div class="col-12 col-sm-9">
+              <%= f.password_field :password, class: "form-control form",autocomplete: "new-password" %>
+            </div>
           </div>
-        </div>
-        <div class="actions">
-          <%= f.submit "ログイン", class: "btn btn-success", style: "width: 100%;" %>
-        </div>
-        <hr class="my-4">
-        <div style="text-align: center;">
-          <p>ユーザー登録がまだの方はこちら</p>
-            <%= link_to "ユーザー登録", new_user_registration_path, class: "btn btn-sm btn-outline-primary" %>
-          <% end %>
-        </div>
+          <div class="actions">
+            <%= f.submit "ログイン", class: "btn btn-success", style: "width: 100%;" %>
+          </div>
+          <hr class="my-4">
+          <div style="text-align: center;">
+            <p>ユーザー登録がまだの方はこちら</p>
+              <%= link_to "ユーザー登録", new_user_registration_path, class: "btn btn-sm btn-outline-primary" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

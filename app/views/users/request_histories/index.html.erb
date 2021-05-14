@@ -1,52 +1,18 @@
 <div class="container">
   <div class="row">
     <h4 class="col-12"><%= @user.name %>さんの進行中の依頼</h4>
-    <div class="col-12 col-lg-6">
       <% @requests.each do |request| %>
         <% if request.datetime > DateTime.now %>
-          <div class="req-box col-12" style="border: 1px solid #EEEEEE;">
-            <div class="req-img">
-              <%= attachment_image_tag request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '100x70', class: "thumbnail" %>
-              <p>依頼者 : <%= link_to request.user.name, users_user_path(request.user) %></p>
-              </div>
-            <div class="req-text">
-              <p class="title">
-                <%= link_to request.title, users_request_path(request) %>
-              </p>
-              <p class="content"><%= request.content %></p>
-              <p class="req-info">
-                助っ人登録数 : <%= request.participants.count %>/<%= request.capacity %>
-                <span class="badge badge-success">進行中</span>
-              </p>
-            </div>
-          </div>
+          <%= render "users/participant_histories/participant_box", request: request %>
         <% end %>
       <% end %>
-    </div>
   </div>
   <div class="row">
     <h4 class="col-12"><%= @user.name %>さんの終了した依頼</h4>
-    <div class="col-12 col-lg-6">
       <% @requests.each do |request| %>
         <% if request.datetime <= DateTime.now %>
-          <div class="req-box col-12" style="border: 1px solid #EEEEEE;">
-            <div class="req-img">
-              <%= attachment_image_tag request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '100x70', class: "thumbnail" %>
-              <p>依頼者 : <%= link_to request.user.name, users_user_path(request.user) %></p>
-              </div>
-            <div class="req-text">
-              <p class="title">
-                <%= link_to request.title, users_request_path(request) %>
-              </p>
-              <p class="content"><%= request.content %></p>
-              <p class="req-info">
-                助っ人登録数 : <%= request.participants.count %>/<%= request.capacity %>
-                <span class="badge badge-danger">終了</span>
-              </p>
-            </div>
-          </div>
+          <%= render "users/participant_histories/participant_box", request: request %>
         <% end %>
       <% end %>
-    </div>
   </div>
 </div>

@@ -1,25 +1,8 @@
 <div class="container">
   <div class="row">
     <h4 class="col-12"><%= current_user.name %>さんのキープリスト</h4>
-    <div class="col-12 col-lg-6">
-      <% @keeps.each do |keep| %>
-        <div class="req-box col-12" style="border: 1px solid #EEEEEE;">
-          <div class="req-img">
-            <%= attachment_image_tag keep.request, :image, :fill, 150, 100, format: 'jpg', fallback: "1560031.jpg", size: '100x70', class: "thumbnail" %>
-            <p>依頼者 : <%= link_to keep.request.user.name, users_user_path(keep.request.user) %></p>
-          </div>
-          <div class="req-text">
-            <p class="title">
-              <%= link_to keep.request.title, users_request_path(keep.request) %>
-            </p>
-            <p class="content"><%= keep.request.content %></p>
-            <p class="req-info">
-              助っ人登録数 : <%= keep.request.participants.count %>/<%= keep.request.capacity %>
-              <span class="badge badge-success">進行中</span>
-            </p>
-          </div>
-        </div>
-      <% end %>
-    </div>
+    <% @keeps.each do |keep| %>
+      <%= render "users/participant_histories/participant_box", request: keep.request %>
+    <% end %>
   </div>
 </div>

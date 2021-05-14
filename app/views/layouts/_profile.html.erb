@@ -1,38 +1,41 @@
 <div class="col-12 offset-sm-0 col-md-3 offset-md-1">
 	<div class="row">
-		<div class="col-12 profile">
+		<div class="col-12 profile-user">
 			<p class="greeting">ログイン中のユーザー</p>
 			<p ><%= attachment_image_tag user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '100x100', class: "prof-img" %></p>
-			<i class="fa fa-user"></i> <span class="login_user_name"><%= user.name %></span>
-				さん
+			<i class="fa fa-user" style="color: #fff;"></i> <span class="login_user_name"><%= user.name %></span>
+				<span style="color: #fff;">さん</span>
 		</div>
-		<div class="col-12 profile">
+	</div>
+	<div class="row">
+		<div class="col-12 profile" style="padding: 0;">
 			<div>
-				<strong>保有チケット</strong><br>【 <i class="fa fa-ticket" style="color: orange;"></i> x <span class="count"><%= user.ticket %></span> 】
+				<p class="menu-title"><strong>保有チケット</strong></p>
+				<p>【 <i class="fa fa-ticket" style="color: orange;"></i> x <span class="count"><%= user.ticket %></span> 】</p>
+				<p>
+					<%= link_to "チケット購入履歴", users_purchases_path, class: "btn btn-outline-info btn-sm" %>
+				</p>
 			</div>
 			<div>
-				<%= link_to "チケット購入履歴", users_purchases_path, class: "btn btn-info btn-sm" %>
-			</div>
-			<hr class="my-4">
-			<div>
-				<strong>進行中の依頼</strong><br>【 <span class="count"><%= requests.count %></span>件 】
-			</div>
-			<div>
-				<%= link_to "依頼履歴", users_user_request_histories_path(user), class: "btn btn-info btn-sm" %>
-			</div>
-			<hr class="my-4">
-			<div>
-				<strong>進行中の助っ人</strong><br>【 <span class="count"><%= participants.count %></span>件 】
+				<p class="menu-title"><strong>進行中の依頼</strong></p>
+				<p>【 <span class="count"><%= requests.count %></span>件 】</p>
+				<p>
+					<%= link_to "依頼履歴", users_user_request_histories_path(user), class: "btn btn-outline-info btn-sm" %>
+				</p>
 			</div>
 			<div>
-				<%= link_to "助っ人履歴", users_user_participant_histories_path(user), class: "btn btn-info btn-sm" %>
+				<p class="menu-title"><strong>進行中の助っ人</strong></p>
+				<p>【 <span class="count"><%= participants.count %></span>件 】</p>
+				<p>
+					<%= link_to "助っ人履歴", users_user_participant_histories_path(user), class: "btn btn-outline-info btn-sm" %>
+				</p>
 			</div>
-			<hr class="my-4">
 			<div>
-				<strong>キープ中の依頼</strong><br> 【 <span class="count"><%= keeps.count %></span>件 】
-			</div>
-			<div>
-				<%= link_to "キープリスト", users_user_keeps_path(current_user), class: "btn btn-warning btn-sm", style: "color: #fff;" %>
+				<p class="menu-title"><strong>キープ中の依頼</strong></p>
+				<p>【 <span class="count"><%= keeps.count %></span>件 】</p>
+				<p>
+					<%= link_to "キープリスト", users_user_keeps_path(current_user), class: "btn btn-outline-warning btn-sm" %>
+				</p>
 			</div>
 		</div>
 	</div>

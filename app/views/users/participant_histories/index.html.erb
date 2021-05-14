@@ -3,15 +3,15 @@
     <h4 class="col-12"><%= @user.name %>さんの進行中の助っ人</h4>
       <% @participants.each do |participant| %>
         <% if participant.request.datetime > DateTime.now %>
-          <%= render "participant_box", participant: participant %>
+          <%= render "participant_box", request: participant.request %>
         <% end %>
       <% end %>
   </div>
   <div class="row">
-    <h4 class="col-12"><%= @user.name %>さんの終了した依頼</h4>
+    <h4 class="col-12"><%= @user.name %>さんの終了した助っ人</h4>
       <% @participants.each do |participant| %>
         <% if participant.request.datetime <= DateTime.now %>
-          <%= render "participant_box", participant: participant %>
+          <%= render "participant_box", request: participant.request %>
         <% end %>
       <% end %>
   </div>

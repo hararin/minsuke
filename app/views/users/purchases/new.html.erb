@@ -3,10 +3,9 @@
 </ol>
 <div class="container">
 	<div class="row">
-		<div class="col-12 col-md-8">
-			<div class="row">
-				<div class="col-12 form-box">
-					<h2>チケット購入</h2>
+		<div class="col-12 col-md-8" style="padding: 0;">
+			<h2 class="page-title">チケット購入</h2>
+				<div class="form-box">
 					<% if flash[:error] %>
 						<div class="row">
 							<div class="col-12 alert alert-danger">
@@ -38,23 +37,22 @@
 							<% end %>
 							<div class="col-12 col-sm-7">
 								<div class="btn-group btn-group-toggle" data-toggle="buttons">
-									<label class="btn btn-outline-primary active">
+									<label class="btn btn-outline-info active">
 										<%= f.radio_button :payment_method, "クレジットカード", {checked: true} %>クレジットカード
 									</label>
-									<label class="btn btn-outline-primary">
+									<label class="btn btn-outline-info">
 										<%= f.radio_button :payment_method, "銀行振込", {} %>銀行振込
 									</label>
 								</div>
 							</div>
 						</div>
 						<div>
-							<%= f.submit "購入する", class: "btn btn-outline-danger", style: "margin-top: 10px; width: 100%;", data: { confirm: "<i class='fa fa-exclamation-circle'></i>この内容で購入しますか？",
+							<%= f.submit "購入する", class: "btn btn-danger", style: "margin-top: 10px; width: 100%;", data: { confirm: "<i class='fa fa-exclamation-circle'></i>この内容で購入しますか？",
 		                                cancel: "戻る",
 		                                commit: '購入する' } %>
 						</div>
 					<% end %>
 				</div>
-			</div>
 		</div>
 		<%= render 'layouts/profile', user: current_user, requests: @progress_requests, participants: @progress_participants, keeps: @keeps %>
 	</div>

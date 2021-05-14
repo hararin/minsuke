@@ -3,83 +3,85 @@
 </ol>
 <div class="container">
 	<div class="row">
-		<div class="col-12 col-md-8 form-box">
-			<h2>依頼作成</h2>
-			<% if flash[:error] %>
-				<div class="error-message">
-					<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
-				</div>
-			<% end %>
-			<%= render 'layouts/error_messages', model: @request %>
-			<%= form_with model: @request, local: true, url: users_requests_path, method: :post, class: "form-horizontal" do |f| %>
-				<div class="form-group row">
-					<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
-						タイトル <span class="badge badge-danger">必須</span>
-					<% end %>
-					<div class="col-12 col-sm-8">
-						<%= f.text_field :title, class: "form-control form" %>
+		<div class="col-12 col-md-8" style="padding: 0;">
+			<h2 class="page-title">依頼作成</h2>
+			<div class="form-box">
+				<% if flash[:error] %>
+					<div class="error-message">
+						<i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
 					</div>
-				</div>
-				<div class="form-group row">
-					<%= f.label :"詳細", class: "col-12 col-sm-4 col-form-label" %>
-					<div class="col-12 col-sm-8">
-						<%= f.text_area :content, class: "form-control form" %>
+				<% end %>
+				<%= render 'layouts/error_messages', model: @request %>
+				<%= form_with model: @request, local: true, url: users_requests_path, method: :post, class: "form-horizontal" do |f| %>
+					<div class="form-group row">
+						<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
+							タイトル <span class="badge badge-danger">必須</span>
+						<% end %>
+						<div class="col-12 col-sm-8">
+							<%= f.text_field :title, class: "form-control form" %>
+						</div>
 					</div>
-				</div>
-				<div class="form-group row">
-					<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
-						日時 <span class="badge badge-danger">必須</span>
-					<% end %>
-					<div class="input-group col-12 col-sm-8" data-target-input="nearest">
-						<%= f.text_field :datetime, id: "datetime",class: "form-control form datepicker", data: { target: '#datetime'} %>
-						<div class="input-group-append" data-target="#datetime" data-toggle="datetimepicker">
-				        	<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-				   		</div>
+					<div class="form-group row">
+						<%= f.label :"詳細", class: "col-12 col-sm-4 col-form-label" %>
+						<div class="col-12 col-sm-8">
+							<%= f.text_area :content, class: "form-control form" %>
+						</div>
 					</div>
-				</div>
-			    <div class="form-group row">
-			    	<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
-			    		住所 <span class="badge badge-danger">必須</span>
-			    	<% end %>
-				    <div class="col-12 col-sm-8">
-						<%= f.text_field :address, class: "form-control form" %>
+					<div class="form-group row">
+						<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
+							日時 <span class="badge badge-danger">必須</span>
+						<% end %>
+						<div class="input-group col-12 col-sm-8" data-target-input="nearest">
+							<%= f.text_field :datetime, id: "datetime",class: "form-control form datepicker", data: { target: '#datetime'} %>
+							<div class="input-group-append" data-target="#datetime" data-toggle="datetimepicker">
+					        	<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+					   		</div>
+						</div>
 					</div>
-			    </div>
-			    <div class="form-group row">
-			    	<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
-			    		募集人数 <span class="badge badge-danger">必須</span>
-			    	<% end %>
-				    <div class="col-12 col-sm-8" style="text-align: left;">
-				    	<% if current_user.ticket == 0 %>
-				    		<p>チケットが不足しています</p>
-				    	<% else %>
-				    		<%= f.select :capacity, options_for_select((1..current_user.ticket).to_a), class: "form-control form" %>
+				    <div class="form-group row">
+				    	<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
+				    		住所 <span class="badge badge-danger">必須</span>
 				    	<% end %>
+					    <div class="col-12 col-sm-8">
+							<%= f.text_field :address, class: "form-control form" %>
+						</div>
+				    </div>
+				    <div class="form-group row">
+				    	<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
+				    		募集人数 <span class="badge badge-danger">必須</span>
+				    	<% end %>
+					    <div class="col-12 col-sm-8" style="text-align: left;">
+					    	<% if current_user.ticket == 0 %>
+					    		<p>チケットが不足しています</p>
+					    	<% else %>
+					    		<%= f.select :capacity, options_for_select((1..current_user.ticket).to_a), class: "form-control form" %>
+					    	<% end %>
+						</div>
+				    </div>
+					<div class="form-group row">
+						<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
+							募集締切 <span class="badge badge-danger">必須</span>
+						<% end %>
+						<div class="input-group col-12 col-sm-8" data-target-input="nearest">
+							<%= f.text_field :deadline, id: "deadline",class: "form-control form datepicker", data: { target: '#deadline'} %>
+							<div class="input-group-append" data-target="#deadline" data-toggle="datetimepicker">
+					        	<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+					   		</div>
+						</div>
 					</div>
-			    </div>
-				<div class="form-group row">
-					<%= f.label :"", class: "col-12 col-sm-4 col-form-label" do %>
-						募集締切 <span class="badge badge-danger">必須</span>
-					<% end %>
-					<div class="input-group col-12 col-sm-8" data-target-input="nearest">
-						<%= f.text_field :deadline, id: "deadline",class: "form-control form datepicker", data: { target: '#deadline'} %>
-						<div class="input-group-append" data-target="#deadline" data-toggle="datetimepicker">
-				        	<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-				   		</div>
+				    <div class="form-group row">
+				    	<%= f.label :"サムネイル", class: "col-12 col-sm-4 col-form-label" %>
+					    <div class="col-12 col-sm-8">
+							<%= f.attachment_field :image %>
+						</div>
+				    </div>
+					<div>
+						<%= f.submit "依頼する", class: "btn btn-primary", style: "width: 100%;" %>
 					</div>
+				<% end %>
+				<div class="caution">
+					<p>・依頼の際には、募集人数分のチケットが消費されます。<br>・募集人数に助っ人数が達しなかった場合、依頼終了後または依頼削除後に余分のチケットが返却されます。</p>
 				</div>
-			    <div class="form-group row">
-			    	<%= f.label :"サムネイル", class: "col-12 col-sm-4 col-form-label" %>
-				    <div class="col-12 col-sm-8">
-						<%= f.attachment_field :image %>
-					</div>
-			    </div>
-				<div>
-					<%= f.submit "依頼する", class: "btn btn-primary", style: "width: 100%;" %>
-				</div>
-			<% end %>
-			<div class="caution">
-				<p>・依頼の際には、募集人数分のチケットが消費されます。<br>・募集人数に助っ人数が達しなかった場合、依頼終了後または依頼削除後に余分のチケットが返却されます。</p>
 			</div>
 		</div>
 		<%= render 'layouts/profile', user: current_user, requests: @progress_requests, participants: @progress_participants, keeps: @keeps %>

@@ -3,100 +3,108 @@
   </ol>
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-8 form-box">
-      <% if flash[:error] %>
-        <div class="row">
-          <div class="col-sm-12 col-md-6 offset-md-3 error-message">
-            <i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
-          </div>
-        </div>
-      <% end %>
-      <div class="row request-info">
-        <div class="col-12">
-          <h2><strong><%= @request.title %></strong></h2>
-          <p class="request-content"><%= safe_join(@request.content.split("\n"),tag(:br)) %></p>
-        </div>
-        <p><%= attachment_image_tag @request, :image,format: 'jpg', fallback: "1560031.jpg", class: "request-img col-12" %></p>
-        <div class="col-12">
-          <h4>依頼者</h4>
-          <p><%= link_to @request.user.name, users_user_path(@request.user) %></p>
-        </div>
-        <div class="col-12">
-          <h4>日程</h4>
-          <p><%= @request.datetime %></p>
-        </div>
-        <div class="col-12">
-          <h4>住所</h4>
-          <p><%= @request.address %></p>
-          <p id="map"></p>
-        </div>
-        <div class="col-12">
-          <h4>募集人数</h4>
-          <p><%= @request.capacity %>名</p>
-        </div>
-        <div class="col-12">
-          <h4>募集締切日時</h4>
-          <p><%= @request.deadline %></p>
-        </div>
-        <div class="col-12">
-          <h4>助っ人一覧</h4>
-          <% @participants.each do |participant| %>
-            <p><%= link_to participant.user.name, users_user_path(participant.user) %>
-              <% if @request.user == current_user && DateTime.now > @request.datetime %>
-                <% if participant.evaluation.present? %>
-                  <span class="badge badge-secondary">評価済み</span>
-                <% else %>
-                  <%= link_to "評価する", new_users_participant_evaluation_path(participant) %>
-                <% end %>
-              <% end %>
-            </p>
-          <% end %>
+    <% if flash[:error] %>
+      <div class="row">
+        <div class="col-sm-12 col-md-6 offset-md-3 error-message">
+          <i class="fa fa-exclamation-circle"></i><%= flash[:error] %>
         </div>
       </div>
-      <div class="row options">
-        <div class="col-12">
-          <% if DateTime.now >= @request.datetime %>
-            <p>この依頼は終了しました</p>
-            <% if @participants.exists?(user_id: current_user.id) %>
-              <% if @request.another_evaluations.exists?(user_id: current_user.id) %>
-                <span class="badge badge-secondary">評価済み</span>
-              <% else %>
-                <%= link_to "依頼者を評価する", new_users_request_another_evaluation_path(@request) %>
-              <% end %>
-            <% end %>
-          <% else %>
-            <% if @request.user.id != current_user.id %>
-              <span id="request-<%= @request.id %>"><%= render partial: "keep", locals: { request: @request} %></span>
-              <% if @request.participants.exists?(user_id: current_user.id) %>
-                <%= link_to "キャンセルする", users_request_participant_path(@request, @participant), method: :delete, class: "btn btn-danger", data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に助っ人登録をキャンセルしますか？", cancel: "戻る", commit: "キャンセルする" } %>
-                <%= link_to users_request_room_path(@request, @room) do %>
-                  <button class="btn btn-info">チャット <i class="fa fa-comments fa-lg"></i></button>
-                <% end %>
-              <% else %>
-                <% if @request.capacity > @request.participants.count %>
-                  <% if DateTime.now < @request.deadline %>
-                    <%= link_to "助っ人になる", users_request_participants_path(@request), method: :post, class: "btn btn-info", data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に助っ人登録しますか？",
-                                                           cancel: "戻る",
-                                                           commit: "登録する" } %>
-                  <% else %>
-                    <p>募集を締め切りました</p>
-                  <% end %>
+    <% end %>
+    <div class="col-12 col-md-8">
+      <div class="form-box">
+        <div class="request-top">
+          <div>
+            <p><%= attachment_image_tag @request.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '50x50', class: "prof-img" %><%= link_to @request.user.name, users_user_path(@request.user) %></p>
+          </div>
+          <div class="options">
+            <% if DateTime.now >= @request.datetime %>
+              <span class="badge badge-danger">この依頼は終了しました</span>
+              <% if @participants.exists?(user_id: current_user.id) %>
+                <% if @request.another_evaluations.exists?(user_id: current_user.id) %>
+                  <span class="badge badge-secondary">評価済み</span>
                 <% else %>
-                  <p>定員に達しました</p>
+                  <%= link_to "依頼者を評価する", new_users_request_another_evaluation_path(@request),class: "btn btn-sm btn-outline-info" %>
                 <% end %>
               <% end %>
             <% else %>
-              <%= link_to users_request_room_path(request, @room) do %>
-                <button class="btn btn-info">チャット <i class="fa fa-comments fa-lg"></i></button>
-              <% end %>
-              <% if DateTime.now < @request.datetime %>
-                <%= link_to edit_users_request_path do %>
-                  <button class="btn btn-success">編集する <i class="fa fa-edit fa-lg"></i></button>
+              <% if @request.user.id != current_user.id %>
+                <span id="request-<%= @request.id %>"><%= render partial: "keep", locals: { request: @request} %></span>
+                <% if @request.participants.exists?(user_id: current_user.id) %>
+                  <%= link_to "キャンセルする", users_request_participant_path(@request, @participant), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に助っ人登録をキャンセルしますか？", cancel: "戻る", commit: "キャンセルする" } %>
+                  <%= link_to users_request_room_path(@request, @room) do %>
+                    <button class="btn btn-info btn-sm">チャット <i class="fa fa-comments fa-lg"></i></button>
+                  <% end %>
+                <% else %>
+                  <% if @request.capacity > @request.participants.count %>
+                    <% if DateTime.now < @request.deadline %>
+                      <%= link_to "助っ人になる", users_request_participants_path(@request), method: :post, class: "btn btn-info btn-sm", data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に助っ人登録しますか？",
+                                                             cancel: "戻る",
+                                                             commit: "登録する" } %>
+                    <% else %>
+                      <p>募集を締め切りました</p>
+                    <% end %>
+                  <% else %>
+                    <p>定員に達しました</p>
+                  <% end %>
                 <% end %>
-                <%= link_to users_request_path, method: :delete, data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に依頼を削除しますか？",cancel: "戻る", commit: '削除する' } do %>
-                  <button class="btn btn-danger">削除する <i class="fa fa-trash fa-lg"></i></button>
+              <% else %>
+                <%= link_to users_request_room_path(request, @room) do %>
+                  <button class="btn btn-info btn-sm">チャット <i class="fa fa-comments fa-lg"></i></button>
+                <% end %>
+                <% if DateTime.now < @request.datetime %>
+                  <%= link_to edit_users_request_path do %>
+                    <button class="btn btn-success btn-sm">編集する <i class="fa fa-edit fa-lg"></i></button>
+                  <% end %>
+                  <%= link_to users_request_path, method: :delete, data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に依頼を削除しますか？",cancel: "戻る", commit: '削除する' } do %>
+                    <button class="btn btn-danger btn-sm">削除する <i class="fa fa-trash fa-lg"></i></button>
+                  <% end %>
                 <% end %>
               <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div>
+          <p><%= attachment_image_tag @request, :image,format: 'jpg', fallback: "1560031.jpg", class: "request-img" %></p>
+        </div>
+        <div class="row request-info">
+          <div class="col-12">
+            <h1><strong><%= @request.title %></strong></h1>
+            <p class="request-content"><%= safe_join(@request.content.split("\n"),tag(:br)) %></p>
+          </div>
+        </div>
+      </div>
+      <div class="request-about">
+        <h4>日時・場所</h4>
+        <div>
+          <p><%= @request.datetime %></p>
+          <p><%= @request.address %></p>
+          <p id="map"></p>
+        </div>
+      </div>
+      <div class="request-suketto-box">
+        <div class="request-suketto-title">
+          <h4>助っ人一覧</h4>
+          <p>募集人数 : <%= @request.capacity %>名 / 募集締切日時 : <%= @request.deadline %></p>
+        </div>
+        <div>
+          <% if @participants.blank? %>
+            <div class="request-suketto">
+              <p>助っ人はいません</p>
+            </div>
+          <% else %>
+            <% @participants.each do |participant| %>
+            <div class="request-suketto">
+              <p><%= link_to participant.user.name, users_user_path(participant.user) %></p>
+              <p class="eval-btn">
+                <% if @request.user == current_user && DateTime.now > @request.datetime %>
+                  <% if participant.evaluation.present? %>
+                    <span class="badge badge-secondary">評価済み</span>
+                  <% else %>
+                    <%= link_to "評価する", new_users_participant_evaluation_path(participant), class: "btn btn-sm btn-outline-info" %>
+                  <% end %>
+                <% end %>
+              </p>
+            </div>
             <% end %>
           <% end %>
         </div>

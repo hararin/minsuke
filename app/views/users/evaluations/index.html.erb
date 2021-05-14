@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <h4 class="col-12"><%= @user.name %>さんの助っ人評価</h4>
+    <% @evaluations.each do |evaluation| %>
+      <div>
+        <p>依頼者 : <%= evaluation.user.name %></p>
+        <p>評価 : 
+          <% if evaluation.evaluation == "不満" %>
+            <span class="badge badge-secondary"><%= evaluation.evaluation %></span>
+          <% elsif evaluation.evaluation == "やや不満" %>
+            <span class="badge badge-primary"><%= evaluation.evaluation %></span>
+          <% elsif evaluation.evaluation == "普通" %>
+            <span class="badge badge-success"><%= evaluation.evaluation %></span>
+          <% elsif evaluation.evaluation == "やや満足" %>
+            <span class="badge badge-warning"><%= evaluation.evaluation %></span>
+          <% else %>
+            <span class="badge badge-danger"><%= evaluation.evaluation %></span>
+          <% end %>
+        </p>
+        <p><%= evaluation.content %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
