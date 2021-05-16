@@ -33,12 +33,13 @@ Rails.application.routes.draw do
       resources :participant_histories, only: :index
       resources :keeps, only: :index
       resources :evaluations, only: :index
+      resources :another_evaluations, only: :index
     end
   	resources :requests do
   		resources :participants, only:[:create, :destroy]
       resources :rooms, only: :show
       resources :keeps, only:[:create, :destroy]
-      resources :another_evaluations, only:[:index, :new, :create]
+      resources :another_evaluations, only:[:new, :create]
   	end
     resources :participants do
       resources :evaluations, only:[:new, :create]

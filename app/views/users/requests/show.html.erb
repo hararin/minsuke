@@ -14,7 +14,7 @@
       <div class="form-box">
         <div class="request-top">
           <div>
-            <p><%= attachment_image_tag @request.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '50x50', class: "prof-img" %><%= link_to @request.user.name, users_user_path(@request.user) %></p>
+            <p><%= attachment_image_tag @request.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '50x50', class: "prof-img" %> <%= link_to @request.user.name, users_user_path(@request.user) %></p>
           </div>
           <div class="options">
             <% if DateTime.now >= @request.datetime %>
@@ -94,7 +94,7 @@
           <% else %>
             <% @participants.each do |participant| %>
             <div class="request-suketto">
-              <p><%= link_to participant.user.name, users_user_path(participant.user) %></p>
+              <p><%= attachment_image_tag participant.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '50x50', class: "prof-img" %> <%= link_to participant.user.name, users_user_path(participant.user) %></p>
               <p class="eval-btn">
                 <% if @request.user == current_user && DateTime.now > @request.datetime %>
                   <% if participant.evaluation.present? %>

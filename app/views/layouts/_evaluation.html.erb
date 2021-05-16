@@ -1,0 +1,31 @@
+<div>
+  <% if evaluations.blank? %>
+  <% else %>
+    <% evaluations.compact.each do |evaluation| %>
+      <div class="evaluation-item">
+        <div class="evaluation-info">
+          <p><%= attachment_image_tag evaluation.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '50x50', class: "prof-img" %> <%= evaluation.user.name %></p>
+          <h4>
+            <% if evaluation.evaluation == "不満" %>
+              <span class="badge badge-dark"><%= evaluation.evaluation %></span>
+            <% elsif evaluation.evaluation == "やや不満" %>
+              <span class="badge badge-primary"><%= evaluation.evaluation %></span>
+            <% elsif evaluation.evaluation == "普通" %>
+              <span class="badge badge-success"><%= evaluation.evaluation %></span>
+            <% elsif evaluation.evaluation == "やや満足" %>
+              <span class="badge badge-warning"><%= evaluation.evaluation %></span>
+            <% else %>
+              <span class="badge badge-danger"><%= evaluation.evaluation %></span>
+            <% end %>
+          </h4>
+        </div>
+        <div>
+          <p><%= evaluation.content %></p>
+        </div>
+        <div>
+          <%= evaluation.created_at %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

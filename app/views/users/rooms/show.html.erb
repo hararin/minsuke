@@ -3,21 +3,31 @@
 </ol>
 <div class="container">
 	<div class="row">
-		<div class="col-12 col-md-8 form-box">
-			<div class="row">
-				<div class="col-12">
-					<h2>チャット</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-12" id="posts">
+		<div class="col-12 col-md-8">
+			<div class="request-about">
+				<h4><%= @request.title %></h4>
+				<div class="chat-box" id="posts">
 					<%= render "post", collection: @posts %>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-12 col-md-8" style="text-align: right;">
-					<input type="text" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>">
+				<div class="comment-box" style="text-align: right;">
+					<input type="text" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>" class="comment-form">
 				</div>
+			</div>
+			<div class="request-about" style="margin-top: 20px;">
+				<h4>参加者</h4>
+				<div>
+          <div>
+            <%= attachment_image_tag @request.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '50x50', class: "prof-img" %> <%= link_to @request.user.name, users_user_path(@request.user) %> (依頼者)
+          </div>
+          <% if @participants.blank? %>
+          <% else %>
+            <% @participants.each do |participant| %>
+            <div>
+              <%= attachment_image_tag participant.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '50x50', class: "prof-img" %> <%= link_to participant.user.name, users_user_path(participant.user) %>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
 			</div>
 		</div>
 		<%= render 'layouts/profile', user: current_user, requests: @progress_requests, participants: @progress_participants, keeps: @keeps %>

@@ -3,9 +3,11 @@
     <div class="col-12 col-md-8 evaluation-box" style="padding: 0;">
       <div class="evaluation-title">
         <h4><%= @user.name %>さんの評価</h4>
-        <p>【 助っ人 】</p>
+        <p>【 依頼 】</p>
       </div>
-      <%= render 'layouts/evaluation', evaluations: @evaluations %>
+      <% @another_evaluations.each do |evaluations| %>
+        <%= render 'layouts/evaluation', evaluations: evaluations %>
+      <% end %>
     </div>
     <%= render 'layouts/profile', user: current_user, requests: @progress_requests, participants: @progress_participants, keeps: @keeps %>
   </div>

@@ -42,8 +42,8 @@
 								<p>
 									<strong>
 									【 助っ人としての評価 】
-									<% if @user != current_user %>
 										<%= link_to "評価詳細", users_user_evaluations_path(@user), class: "btn btn-outline-info btn-sm" %>
+									<% if @user != current_user %>
 										<%= link_to "助っ人履歴", users_user_participant_histories_path(@user), class: "btn btn-outline-info btn-sm" %>
 									<% end %>
 									</strong>
@@ -56,6 +56,7 @@
 								<p>
 									<strong>
 									【 依頼者としての評価 】
+									<%= link_to "評価詳細", users_user_another_evaluations_path(@user), class: "btn btn-outline-info btn-sm" %>
 									<% if @user != current_user %>
 										<%= link_to "依頼履歴", users_user_request_histories_path(@user), class: "btn btn-outline-info btn-sm" %>
 									<% end %>

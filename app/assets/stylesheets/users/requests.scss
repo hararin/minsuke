@@ -38,11 +38,10 @@
 
 .search-form {
   width: 80%;
-  margin-bottom: 15px;
   color: #fff;
   background-color: #000033;
-  padding: 15px 30px;
-  border-radius: 50px;
+  padding: 15px;
+  border-radius: 15px 15px 0 0;
 }
 
 .req-box {
@@ -160,6 +159,7 @@
     }
   }
   .request-suketto {
+    background-color: #fff;
     display: flex;
     p {
       margin: 0;

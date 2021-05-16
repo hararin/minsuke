@@ -7,6 +7,19 @@ class Users::AnotherEvaluationsController < ApplicationController
   before_action :set_keeps
   before_action :keeps_auto_destroy
 
+  def index
+    @user = User.find(params[:user_id])
+    @requests = @user.requests.all
+    @another_evaluations = []
+    @requests.each do |request|
+      @another_evaluations << AnotherEvaluation.where(request_id: request.id)
+    end
+    @evaluations = []
+    @another_evaluations.each do |evaluation|
+      @evaluations << evaluation
+    end
+  end
+
   def new
     @evaluation = AnotherEvaluation.new
     @request = Request.find(params[:request_id])

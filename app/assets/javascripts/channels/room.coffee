@@ -7,7 +7,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    $('#posts').append("<div><p>"+data["message"]+"</p></div><hr>");
+    $('#posts').append("<div>"+data["message"]+"</div><hr>");
 
   speak: (message) ->
     @perform 'speak', message: message

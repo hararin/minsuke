@@ -1,3 +1,35 @@
 // Place all the styles related to the users::evaluations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.evaluation-box {
+  margin-bottom: 20px;
+  .evaluation-title {
+    display: flex;
+    background-color: #000033;
+    color: #fff;
+    h4 {
+      border: 1px solid #000033;
+      padding: 10px;
+      margin: 0;
+    }
+    p {
+      margin: 10px 10px 10px auto;
+    }
+  }
+  .evaluation-item {
+    background-color: #fff;
+    border: 1px solid #000033;
+    border-top: none;
+    padding: 5px 10px;
+    .evaluation-info {
+      display: flex;
+      p {
+        margin: 0;
+      }
+      h4 {
+        margin-left: auto;
+      }
+    }
+  }
+}
