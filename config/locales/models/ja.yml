@@ -20,3 +20,5 @@ ja:
         quantity: 購入数
       report:
         content: 通報理由
+      question:
+        content: 質問内容

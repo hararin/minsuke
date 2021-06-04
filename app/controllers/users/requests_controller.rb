@@ -44,6 +44,7 @@ class Users::RequestsController < ApplicationController
 										   user_id: current_user.id)
 		@room = Room.find_by(request_id: @request.id)
 		@keep = Keep.find_by(user_id: current_user.id, request_id: @request.id)
+		@questions = Question.all
 		add_breadcrumb 'ホーム', root_path
 		add_breadcrumb '依頼一覧', users_requests_path
 		add_breadcrumb '依頼詳細'

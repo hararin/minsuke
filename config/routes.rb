@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       resources :rooms, only: :show
       resources :keeps, only:[:create, :destroy]
       resources :another_evaluations, only:[:new, :create]
+      resources :questions, except:[:index, :show]
   	end
     resources :participants do
       resources :evaluations, only:[:new, :create]

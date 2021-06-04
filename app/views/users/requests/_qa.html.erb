@@ -1,0 +1,20 @@
+<div class="qa-box">
+  <h4>Q & A</h4>
+  <div>
+    <% questions.each do |question| %>
+      <div class="qa-item">
+        <div class="qa-info">
+          <p><%= attachment_image_tag question.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '50x50', class: "prof-img" %> <%= link_to question.user.name, users_user_path(question.user) %></p>
+          <h5 class="question-status">
+            <% if question.status == 0 %>
+              <span class="badge badge-primary">未回答</span>
+            <% end %>
+          </h5>
+        </div>
+        <div>
+          <p><%= question.content %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

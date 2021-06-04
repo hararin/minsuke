@@ -28,6 +28,9 @@
               <% end %>
             <% else %>
               <% if @request.user.id != current_user.id %>
+                <%= link_to new_users_request_question_path(@request) do %>
+                    <button class="btn btn-dark btn-sm">質問する <i class="fa fa-quora fa-lg"></i></button>
+                  <% end %>
                 <span id="request-<%= @request.id %>"><%= render partial: "keep", locals: { request: @request} %></span>
                 <% if @request.participants.exists?(user_id: current_user.id) %>
                   <%= link_to "キャンセルする", users_request_participant_path(@request, @participant), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に助っ人登録をキャンセルしますか？", cancel: "戻る", commit: "キャンセルする" } %>
@@ -96,11 +99,15 @@
             <div class="request-suketto">
               <p><%= attachment_image_tag participant.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '50x50', class: "prof-img" %> <%= link_to participant.user.name, users_user_path(participant.user) %></p>
               <p class="eval-btn">
-                <% if @request.user == current_user && DateTime.now > @request.datetime %>
-                  <% if participant.evaluation.present? %>
-                    <span class="badge badge-secondary">評価済み</span>
+                <% if @request.user == current_user %>
+                  <% if DateTime.now > @request.datetime %>
+                    <% if participant.evaluation.present? %>
+                      <span class="badge badge-secondary">評価済み</span>
+                    <% else %>
+                      <%= link_to "評価する", new_users_participant_evaluation_path(participant), class: "btn btn-sm btn-outline-info" %>
+                    <% end %>
                   <% else %>
-                    <%= link_to "評価する", new_users_participant_evaluation_path(participant), class: "btn btn-sm btn-outline-info" %>
+                    <%= link_to "助っ人を断る", users_request_participant_path(@request, participant), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "<i class='fa fa-exclamation-circle'></i>本当に助っ人を断りますか？", cancel: "戻る", commit: "断る" } %>
                   <% end %>
                 <% end %>
               </p>
@@ -109,6 +116,7 @@
           <% end %>
         </div>
       </div>
+      <%= render 'qa', questions: @questions %>
     </div>
     <%= render 'layouts/profile', user: current_user, requests: @progress_requests, participants: @progress_participants, keeps: @keeps %>
   </div>

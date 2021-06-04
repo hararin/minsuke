@@ -1,0 +1,32 @@
+// Place all the styles related to the users::questions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.qa-box {
+  background-color: #fff;
+  border: 1px solid #000033;
+  margin-bottom: 10px;
+  h4 {
+    background-color: #000033;
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+  }
+  .qa-item {
+    border-top: 1px solid #000033;
+    .qa-info {
+      display: flex;
+      p {
+        margin: 0;
+        padding: 5px 10px;
+      }
+      .question-status {
+        margin-left: auto;
+        margin-right: 10px;
+      }
+    }
+    p {
+      padding: 0 10px;
+    }
+  }
+}
