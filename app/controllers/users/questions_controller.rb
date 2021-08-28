@@ -25,11 +25,19 @@ class Users::QuestionsController < ApplicationController
   end
 
   def edit
-    
+    @request = Request.find(params[:request_id])
+    @question = Question.find(params[:id])
   end
 
   def update
-    
+    @question = Question.find(params[:id])
+    @request = Request.find(params[:request_id])
+    if @question.update(question_params)
+      @question.update(status: 2)
+      redirect_to users_request_path(@request)
+    else
+      render :edit
+    end
   end
 
   def destroy

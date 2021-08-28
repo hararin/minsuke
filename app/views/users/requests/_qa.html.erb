@@ -5,15 +5,47 @@
       <div class="qa-item">
         <div class="qa-info">
           <p><%= attachment_image_tag question.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '50x50', class: "prof-img" %> <%= link_to question.user.name, users_user_path(question.user) %></p>
-          <h5 class="question-status">
-            <% if question.status == 0 %>
+          <h6 class="question-status">
+            <% if question.status == "未回答" %>
               <span class="badge badge-primary">未回答</span>
+            <% elsif question.status == "追加質問" %>
+              <span class="badge badge-warning">追加質問</span>
+            <% elsif question.status == "回答済" %>
+              <span class="badge badge-warning">回答済</span>
+            <% else %>
+              <span class="badge badge-warning">解決</span>
             <% end %>
-          </h5>
+          </h6>
         </div>
         <div>
           <p><%= question.content %></p>
         </div>
+        <div class="qa-option">
+          <p><%= question.updated_at %></p>
+          <% if question.user == current_user %>
+            <%= link_to edit_users_request_question_path(question.request, question) do %>
+              <p class="btn btn-success btn-sm">編集する</p>
+            <% end %>
+          <% elsif question.request.user == current_user %>
+            <% if question.answer.nil? %>
+              <%= link_to new_users_request_question_answer_path(question.request, question) do %>
+                <p class="btn btn-danger btn-sm">回答する</p>
+              <% end %>
+            <% else %>
+              <%= link_to edit_users_request_question_answer_path(question.request, question, question.answer) do %>
+                <p class="btn btn-danger btn-sm">回答を編集する</p>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <% if not question.answer.nil? %>
+          <div style="width: 75%; margin-left: auto; background-color: #f8f9fa; border-radius: 10px; border: 1px solid #000033; margin: 0 10px 10px auto;">
+            <p><%= attachment_image_tag question.answer.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "1560031.jpg", size: '50x50', class: "prof-img" %> <%= link_to question.answer.user.name, users_user_path(question.answer.user) %>
+            </p>
+            <p><%= question.answer.content %></p>
+            <p><%= question.answer.created_at %></p>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>

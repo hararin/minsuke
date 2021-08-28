@@ -1,0 +1,49 @@
+<ol class="breadcrumb">
+  <%= render_breadcrumbs :tag => :li, :separator => " > " %>
+</ol>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8" style="padding: 0;">
+      <h2 class="page-title">質問する</h2>
+      <div class="form-box">
+      <%= render 'layouts/error_messages', model: @question %>
+        <%= form_with model: @question, local: true, url: users_request_question_path(@request, @question) do |f| %>
+          <div class="form-group row">
+            <%= f.label :"", class: "col-12 col-form-label" do %>
+              ステータス <span class="badge badge-danger">必須</span>
+            <% end %>
+            <div class="col-12">
+              <%= select :status, :name, Question.statuses.keys.to_a, include_blank: "選択してください" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= f.label :"", class: "col-12 col-form-label" do %>
+              質問内容 <span class="badge badge-danger">必須</span>
+            <% end %>
+            <div class="col-12">
+              <%= f.text_area :content, class: "form-control form" %>
+            </div>
+          </div>
+          <div>
+            <%= f.submit "質問する", class: "btn btn-info", style: "width: 100%;" %>
+          </div>
+        <% end %>
+        <div class="caution">
+          <p>・質問内容は他のユーザーにも公開されます。</p>
+        </div>
+      </div>
+      <div class="request-about">
+        <h4>依頼情報</h4>
+        <div>
+          <p>タイトル : <%= @request.title %></p>
+          <p>詳細 : <%= @request.content %></p>
+          <p>日程 : <%= @request.datetime %></p>
+          <p>場所 : <%= @request.address %></p>
+          <p>募集人数 : <%= @request.capacity %>人</p>
+          <p>募集締切 : <%= @request.deadline %></p>
+        </div>
+      </div>
+    </div>
+    <%= render 'layouts/profile', user: current_user, requests: @progress_requests, participants: @progress_participants, keeps: @keeps %>
+  </div>
+</div>

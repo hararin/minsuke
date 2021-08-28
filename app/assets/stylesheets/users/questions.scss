@@ -28,5 +28,14 @@
     p {
       padding: 0 10px;
     }
+    .qa-option {
+      display: flex;
+      p {
+        margin-right: auto;
+      }
+      .btn {
+        margin-right: 10px;
+      }
+    }
   }
 }
