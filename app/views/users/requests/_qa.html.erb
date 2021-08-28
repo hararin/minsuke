@@ -18,7 +18,7 @@
           </h6>
         </div>
         <div>
-          <p><%= question.content %></p>
+          <p><%= safe_join(question.content.split("\n"),tag(:br)) %></p>
         </div>
         <div class="qa-option">
           <p><%= question.updated_at %></p>
@@ -49,7 +49,7 @@
                 <% end %>
               <% end %>
             </div>
-            <p><%= question.answer.content %></p>
+            <p><%= safe_join(question.answer.content.split("\n"),tag(:br)) %></p>
             <p><%= question.answer.created_at %></p>
           </div>
         <% end %>
