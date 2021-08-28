@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   namespace :users do
     patch '/users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
+    patch '/users/requests/:request_id/questions/:id/solved' => 'questions#solved', as: 'solved'
   	resources :users, except:[:new, :create] do
       resources :reports, only:[:new, :create]
       resources :request_histories, only: :index

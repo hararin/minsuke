@@ -40,6 +40,18 @@ class Users::QuestionsController < ApplicationController
     end
   end
 
+  def solved
+    @request = Request.find(params[:request_id])
+    @question = Question.find(params[:id])
+    if @question.user != current_user
+      redirect_to users_request_path(@request)
+    else
+      if @question.update(status: 3)
+        redirect_to users_request_path(@request)
+      end
+    end
+  end
+
   def destroy
     
   end
